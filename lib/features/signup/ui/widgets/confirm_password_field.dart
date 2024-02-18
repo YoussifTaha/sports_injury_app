@@ -1,16 +1,21 @@
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:sports_injury_app/core/widgets/widgets.dart';
 
-class PasswordField extends StatefulWidget {
-  const PasswordField({super.key});
+import '../../../../core/widgets/widgets.dart';
+
+class ConfirmPasswordField extends StatefulWidget {
+  final TextEditingController passwordController;
+  final TextEditingController secondPasswordController;
+  const ConfirmPasswordField(
+      {super.key,
+      required this.passwordController,
+      required this.secondPasswordController});
 
   @override
-  State<PasswordField> createState() => _PasswordFieldState();
+  State<ConfirmPasswordField> createState() => _ConfirmPasswordFieldState();
 }
 
-class _PasswordFieldState extends State<PasswordField> {
-  TextEditingController passwordController = TextEditingController();
+class _ConfirmPasswordFieldState extends State<ConfirmPasswordField> {
   bool isPassword = true;
   IconData suffix = Icons.visibility_outlined;
   void changePasswordVisibility() {
@@ -46,16 +51,23 @@ class _PasswordFieldState extends State<PasswordField> {
         textStyle: const TextStyle(
           color: ColorManger.primary,
         ),
-        controller: (passwordController),
+        controller: (widget.secondPasswordController),
         isPassword: isPassword,
         type: TextInputType.visiblePassword,
         validate: (value) {
+          if (widget.secondPasswordController.text !=
+              widget.passwordController.text) {
+            return "Your phone numbers do not match";
+          }
           if (value!.isEmpty) {
-            return "Password Cannot Be Empty";
+            return "Confirm Password Field Cannot Be Empty";
+          }
+          if (value.length < 6) {
+            return '';
           }
           return null;
         },
-        labeltext: "Password",
+        labeltext: "Confirm Password",
         suffixPressed: () {
           changePasswordVisibility();
           setState(() {});

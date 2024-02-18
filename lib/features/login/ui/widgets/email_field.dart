@@ -1,6 +1,6 @@
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:sports_injury_app/core/widgets/components.dart';
+import 'package:sports_injury_app/core/widgets/widgets.dart';
 
 class EmailField extends StatelessWidget {
   const EmailField({super.key});
@@ -8,7 +8,7 @@ class EmailField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
-    return defaultform(
+    return defaultForm(
         fillColor: ColorManger.moreLightGray,
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16.0),

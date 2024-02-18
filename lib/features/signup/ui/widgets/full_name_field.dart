@@ -1,23 +1,10 @@
 import 'package:sports_injury_app/core/theming/colors.dart';
-import 'package:flutter/material.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:flutter/material.dart';
 
-class PasswordField extends StatefulWidget {
-  const PasswordField({super.key});
-
-  @override
-  State<PasswordField> createState() => _PasswordFieldState();
-}
-
-class _PasswordFieldState extends State<PasswordField> {
-  TextEditingController passwordController = TextEditingController();
-  bool isPassword = true;
-  IconData suffix = Icons.visibility_outlined;
-  void changePasswordVisibility() {
-    isPassword = !isPassword;
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-  }
+class FullNameField extends StatelessWidget {
+  final TextEditingController nameController;
+  const FullNameField({super.key, required this.nameController});
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +26,21 @@ class _PasswordFieldState extends State<PasswordField> {
               color: Colors.red,
             )),
         prefixIconColor: ColorManger.primary,
-        suffixIconColor: ColorManger.primary,
         labelStyle: const TextStyle(
           color: ColorManger.primary,
         ),
         textStyle: const TextStyle(
           color: ColorManger.primary,
         ),
-        controller: (passwordController),
-        isPassword: isPassword,
-        type: TextInputType.visiblePassword,
+        controller: (nameController),
+        type: TextInputType.name,
         validate: (value) {
           if (value!.isEmpty) {
-            return "Password Cannot Be Empty";
+            return "Name Cannot Be Empty";
           }
           return null;
         },
-        labeltext: "Password",
-        suffixPressed: () {
-          changePasswordVisibility();
-          setState(() {});
-        },
-        suffix: suffix,
-        prefix: Icons.lock);
+        labeltext: "Full Name",
+        prefix: Icons.person);
   }
 }

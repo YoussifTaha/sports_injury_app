@@ -1,16 +1,16 @@
 import 'package:sports_injury_app/core/theming/colors.dart';
-import 'package:flutter/material.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:flutter/material.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField({super.key});
+  final TextEditingController passwordController;
+  const PasswordField({super.key, required this.passwordController});
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordField> {
-  TextEditingController passwordController = TextEditingController();
   bool isPassword = true;
   IconData suffix = Icons.visibility_outlined;
   void changePasswordVisibility() {
@@ -46,12 +46,15 @@ class _PasswordFieldState extends State<PasswordField> {
         textStyle: const TextStyle(
           color: ColorManger.primary,
         ),
-        controller: (passwordController),
+        controller: (widget.passwordController),
         isPassword: isPassword,
         type: TextInputType.visiblePassword,
         validate: (value) {
           if (value!.isEmpty) {
             return "Password Cannot Be Empty";
+          }
+          if (value.length < 6) {
+            return "Password is too weak";
           }
           return null;
         },

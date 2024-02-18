@@ -71,7 +71,7 @@ Widget outlinedButton({
       ),
     );
 
-Widget defaultform({
+Widget defaultForm({
   required TextEditingController controller,
   required TextInputType type,
   Function(String)? onSubmit,
