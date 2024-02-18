@@ -9,16 +9,14 @@ class SportsInjuryApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ScreenUtilInit(
-        designSize: const Size(390, 844),
-        minTextAdapt: true,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Antenatal App',
-          initialRoute: Routes.onBoardingScreen,
-          onGenerateRoute: appRouter.generateRoute,
-        ),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Antenatal App',
+        initialRoute: Routes.onBoardingScreen,
+        onGenerateRoute: appRouter.generateRoute,
       ),
     );
   }
