@@ -6,7 +6,7 @@ import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles_manager.dart';
-import '../../../../core/widgets/components.dart';
+import '../../../../core/widgets/widgets.dart';
 import '../widgets/player_image.dart';
 
 class OnBoardingScreen extends StatelessWidget {

@@ -1,10 +1,6 @@
-import 'package:flutter/gestures.dart';
-import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/routing/routes.dart';
 
 class AlreadyHaveAccountText extends StatelessWidget {
   const AlreadyHaveAccountText({super.key});
@@ -16,17 +12,13 @@ class AlreadyHaveAccountText extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: 'Don\'t have an account?',
+            text: 'Already have an account?',
             style:
-                getRegularStyle(color: ColorManger.darkPrimary, fontSize: 15),
+                getRegularStyle(color: ColorManger.darkPrimary, fontSize: 13),
           ),
           TextSpan(
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                context.pushNamed(Routes.signupScreen);
-              },
             text: ' Sign Up',
-            style: getSemiBoldStyle(color: ColorManger.primary, fontSize: 15),
+            style: getSemiBoldStyle(color: ColorManger.primary, fontSize: 13),
           ),
         ],
       ),

@@ -1,23 +1,11 @@
+import 'package:sports_injury_app/core/Helpers/app_regex.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
-import 'package:flutter/material.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:flutter/material.dart';
 
-class PasswordField extends StatefulWidget {
-  const PasswordField({super.key});
-
-  @override
-  State<PasswordField> createState() => _PasswordFieldState();
-}
-
-class _PasswordFieldState extends State<PasswordField> {
-  TextEditingController passwordController = TextEditingController();
-  bool isPassword = true;
-  IconData suffix = Icons.visibility_outlined;
-  void changePasswordVisibility() {
-    isPassword = !isPassword;
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-  }
+class PhoneField extends StatelessWidget {
+  final TextEditingController phoneController;
+  const PhoneField({super.key, required this.phoneController});
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +27,27 @@ class _PasswordFieldState extends State<PasswordField> {
               color: Colors.red,
             )),
         prefixIconColor: ColorManger.primary,
-        suffixIconColor: ColorManger.primary,
         labelStyle: const TextStyle(
           color: ColorManger.primary,
         ),
         textStyle: const TextStyle(
           color: ColorManger.primary,
         ),
-        controller: (passwordController),
-        isPassword: isPassword,
-        type: TextInputType.visiblePassword,
+        controller: (phoneController),
+        type: TextInputType.phone,
         validate: (value) {
           if (value!.isEmpty) {
-            return "Password Cannot Be Empty";
+            return "Phone Number Cannot Be Empty";
+          } else if (!AppRegex.isPhoneNumberValid(value)) {
+            return 'Invalid phone number';
+          } else if (!AppRegex.isPhoneNumberContainsOnlyNumbers(value)) {
+            return 'Phone number can only contain numbers';
+          } else if (value.length != 11) {
+            return "Phone number is less than 11 numbers";
           }
           return null;
         },
-        labeltext: "Password",
-        suffixPressed: () {
-          changePasswordVisibility();
-          setState(() {});
-        },
-        suffix: suffix,
-        prefix: Icons.lock);
+        labeltext: "Phone Number",
+        prefix: Icons.phone_android_outlined);
   }
 }
