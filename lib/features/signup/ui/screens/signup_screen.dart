@@ -1,3 +1,4 @@
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
@@ -7,6 +8,8 @@ import 'package:sports_injury_app/features/signup/ui/widgets/signup_form.dart';
 import 'package:sports_injury_app/features/signup/ui/widgets/terms_and_conitions_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/routing/routes.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -47,11 +50,11 @@ class SignupScreen extends StatelessWidget {
                           context: context,
                           function: () {
                             if (formKey.currentState!.validate()) {
-                              // if (formKey.currentState!.validate()) {
-                              //   context.pushNamedAndRemoveUntill(
-                              //       Routes.homeLayout,
-                              //       predicate: (Route<dynamic> route) => false);
-                              // }
+                              if (formKey.currentState!.validate()) {
+                                context.pushNamedAndRemoveUntill(
+                                    Routes.accountTypeScreen,
+                                    predicate: (Route<dynamic> route) => false);
+                              }
                             }
                           },
                           text: 'Create Account',
