@@ -46,14 +46,6 @@ class InjuryRegionScreen extends StatelessWidget {
                 title: 'Possible Injuryies for $injuryRegion',
               ),
               verticalSpace(20),
-              InjuryInfoCategoryRow(
-                title: 'Tests',
-              ),
-              verticalSpace(20),
-              InjuryInfoCategoryRow(
-                title: 'Exercises',
-              ),
-              verticalSpace(20),
             ],
           ),
         ));
