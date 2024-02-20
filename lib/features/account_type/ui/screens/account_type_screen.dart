@@ -1,3 +1,4 @@
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
@@ -5,6 +6,8 @@ import 'package:sports_injury_app/core/widgets/widgets.dart';
 import 'package:sports_injury_app/features/account_type/ui/widgets/account_type_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/routing/routes.dart';
 
 class AccountType extends StatefulWidget {
   const AccountType({Key? key}) : super(key: key);
@@ -83,8 +86,8 @@ class _AccountTypeState extends State<AccountType> {
               button(
                   context: context,
                   function: () {
-                    // context.pushNamedAndRemoveUntill(Routes.homeLayout,
-                    //     predicate: (Route<dynamic> route) => false);
+                    context.pushNamedAndRemoveUntill(Routes.homeScreen,
+                        predicate: (Route<dynamic> route) => false);
                   },
                   text: 'Next')
             ],

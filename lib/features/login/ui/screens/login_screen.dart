@@ -1,3 +1,4 @@
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
@@ -7,6 +8,8 @@ import 'package:sports_injury_app/features/login/ui/widgets/email_field.dart';
 import 'package:sports_injury_app/features/login/ui/widgets/password_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/routing/routes.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -61,11 +64,11 @@ class LoginScreen extends StatelessWidget {
                       button(
                           context: context,
                           function: () {
-                            // if (formKey.currentState!.validate()) {
-                            //   context.pushNamedAndRemoveUntill(
-                            //       Routes.homeLayout,
-                            //       predicate: (Route<dynamic> route) => false);
-                            // }
+                            if (formKey.currentState!.validate()) {
+                              context.pushNamedAndRemoveUntill(
+                                  Routes.homeScreen,
+                                  predicate: (Route<dynamic> route) => false);
+                            }
                           },
                           text: 'Login',
                           height: 50,
