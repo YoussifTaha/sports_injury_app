@@ -38,22 +38,19 @@ class InjuryRegionScreen extends StatelessWidget {
               ),
               verticalSpace(30),
               InjuryInfoCategoryRow(
-                image: 'Anatomy',
                 title: 'Anatomy',
               ),
               verticalSpace(20),
               InjuryInfoCategoryRow(
                 image: injuryRegion,
-                title: 'Possible Injury Mechanisms',
+                title: 'Possible Injuryies for $injuryRegion',
               ),
               verticalSpace(20),
               InjuryInfoCategoryRow(
-                image: 'Tests',
                 title: 'Tests',
               ),
               verticalSpace(20),
               InjuryInfoCategoryRow(
-                image: 'Exercises',
                 title: 'Exercises',
               ),
               verticalSpace(20),

@@ -7,9 +7,12 @@ import '../../../../core/theming/styles_manager.dart';
 
 class InjuryInfoCategoryRow extends StatelessWidget {
   final String title;
-  final String image;
-  const InjuryInfoCategoryRow(
-      {super.key, required this.title, required this.image});
+  final String? image;
+  const InjuryInfoCategoryRow({
+    super.key,
+    required this.title,
+    this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class InjuryInfoCategoryRow extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Image.asset('assets/images/$image.png'),
+                child: Image.asset('assets/images/${image ?? title}.png'),
               ),
             ],
           ),
@@ -44,7 +47,7 @@ class InjuryInfoCategoryRow extends StatelessWidget {
               Text(
                 title,
                 style: getBoldStyle(
-                    color: ColorManger.darkPrimary, fontSize: 16.sp),
+                    color: ColorManger.darkPrimary, fontSize: 14.sp),
               ),
             ],
           )
