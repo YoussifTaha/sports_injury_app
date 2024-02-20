@@ -1,5 +1,6 @@
 import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
+import 'package:sports_injury_app/features/home/ui/screens/home.dart';
 import 'package:sports_injury_app/features/login/ui/screens/login_screen.dart';
 import 'package:sports_injury_app/features/onBoarding/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class AppRouter {
       case Routes.accountTypeScreen:
         return MaterialPageRoute(
           builder: (_) => const AccountType(),
+        );
+      case Routes.homeScreen:
+        return MaterialPageRoute(
+          builder: (_) => const HomeScreen(),
         );
       default:
         return MaterialPageRoute(
