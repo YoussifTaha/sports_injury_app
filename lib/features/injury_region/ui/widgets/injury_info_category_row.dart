@@ -40,7 +40,7 @@ class InjuryInfoCategoryRow extends StatelessWidget {
               ),
             ],
           ),
-          horizontalSpace(15),
+          horizontalSpace(10),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
