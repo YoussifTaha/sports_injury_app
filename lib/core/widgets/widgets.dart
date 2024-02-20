@@ -145,14 +145,14 @@ Widget defaultForm({
       ),
     );
 
-Widget myVerticalDivider() => Container(
-      width: double.infinity,
-      height: 1.0.h,
-      color: ColorManger.lighterGray,
+Widget myVerticalDivider({required double height}) => Container(
+      width: 1.w,
+      height: height.h,
+      color: ColorManger.primary,
     );
 
-Widget myHorizontalDivider({required double height}) => Container(
-      width: 1.0.w,
-      height: height,
-      color: ColorManger.lighterGray,
+Widget myHorizontalDivider() => Container(
+      width: double.infinity,
+      height: 1.h,
+      color: ColorManger.lightBackgroundSelect,
     );
