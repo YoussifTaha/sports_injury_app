@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/features/injury_region/ui/widgets/injury_info_category_row.dart';
+
+import '../../../../core/routing/routes.dart';
 
 class InjuryRegionScreen extends StatelessWidget {
   final String injuryRegion;
@@ -41,9 +44,17 @@ class InjuryRegionScreen extends StatelessWidget {
                 title: 'Anatomy',
               ),
               verticalSpace(20),
-              InjuryInfoCategoryRow(
-                image: injuryRegion,
-                title: 'Possible Injuryies for $injuryRegion',
+              InkWell(
+                onTap: () {
+                  context.pushNamed(
+                    Routes.possibleInjuriescreen,
+                    arguments: {'injuryRegion': injuryRegion},
+                  );
+                },
+                child: InjuryInfoCategoryRow(
+                  image: injuryRegion,
+                  title: 'Possible Injuryies for $injuryRegion',
+                ),
               ),
               verticalSpace(20),
             ],
