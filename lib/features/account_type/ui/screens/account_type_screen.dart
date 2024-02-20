@@ -46,13 +46,13 @@ class _AccountTypeState extends State<AccountType> {
                 accountTypeImagePath: 'assets/images/doctorUser.png',
                 accountTypeTitle: 'Physiotherapist',
                 description:
-                    'Help yourself in the evaluation\nprocess with tools that make\nyou get your patients to their\noptimum recovery.',
+                    'Help yourself in the evaluation process with \ntools that make you get \nyour patients to their\noptimum recovery.',
               ),
               verticalSpace(25),
               const AccountTypeCard(
                 accountType: 'patient',
                 accountTypeImagePath: 'assets/images/patientUser.png',
-                accountTypeTitle: 'Female Patient',
+                accountTypeTitle: 'Sports Patient',
                 description:
                     'Follow up with your own \nphysiotherapist and keep up\nthe spirit.',
               ),
