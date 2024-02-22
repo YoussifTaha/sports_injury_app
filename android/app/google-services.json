@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "518459745857",
+    "project_id": "sports-injuries-10be1",
+    "storage_bucket": "sports-injuries-10be1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518459745857:android:fcdf4ff7b91375b12508c0",
+        "android_client_info": {
+          "package_name": "com.example.sports_injury_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrT9NXaECGiw6rsPSCrbtA-Lt9NINwKqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
