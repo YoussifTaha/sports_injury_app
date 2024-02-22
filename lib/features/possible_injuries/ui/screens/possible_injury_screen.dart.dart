@@ -3,13 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
+import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possible_injuries_cubit.dart';
+import 'package:sports_injury_app/features/possible_injuries/ui/widgets/possible_injuries_list_bloc_builder.dart';
 
-import '../widgets/possible_injuries_item.dart';
-
-class PossibleInjuriescreen extends StatelessWidget {
+class PossibleInjuriescreen extends StatefulWidget {
   final String injuryRegion;
   const PossibleInjuriescreen({Key? key, required this.injuryRegion})
       : super(key: key);
+
+  @override
+  State<PossibleInjuriescreen> createState() => _PossibleInjuriescreenState();
+}
+
+class _PossibleInjuriescreenState extends State<PossibleInjuriescreen> {
+  @override
+  void initState() {
+    PossibleInjuriesCubit.get(context)
+        .fetchInjuriesToTheRegion(regionName: widget.injuryRegion);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,63 +34,22 @@ class PossibleInjuriescreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Possible Injuries to the $injuryRegion',
+                  'Possible Injuries to the ${widget.injuryRegion}',
                   style: getBoldStyle(
                       color: ColorManger.darkPrimary, fontSize: 22.sp),
                 ),
                 verticalSpace(10),
                 Text(
-                  'Each one of these injuries have information that include possible injury mechanisms to the $injuryRegion and the tests to confirm them and the exercises program to recover from it.',
+                  'Each one of these injuries have information that include possible injury mechanisms to the ${widget.injuryRegion} and the tests to confirm them and the exercises program to recover from it.',
                   style: getRegularStyle(
                       color: ColorManger.regularGrey.withOpacity(0.8),
                       fontSize: 14.sp,
                       textHeight: 1.1),
                 ),
                 verticalSpace(30),
-
-                // These InjuryInfoCategoryRows are just implmented that way to evaluate the UI untill the data is fetched
-                // TODO make it listView
-
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/acl-tear.png',
-                  title: 'ACL Tear',
-                ),
-                verticalSpace(15),
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/PCL-Tear.png',
-                  title: 'PCL Tear',
-                ),
-                verticalSpace(15),
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/what-is-the-difference-between-an-acl-tear-and-an-mcl-tear-2.png',
-                  title: 'MCL Tear',
-                ),
-                verticalSpace(15),
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/Desktop%20Screenshot%202024.02.20%20-%2019.45.58.53.png',
-                  title: 'LCL Tear',
-                ),
-                verticalSpace(15),
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/patellofemoral-pain-syndrome.png',
-                  title: 'Patellofemoral Pain Syndrome',
-                ),
-                verticalSpace(15),
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/3D-rendering-of-meniscus-tear.png',
-                  title: 'Meniscal Injury',
-                ),
-                verticalSpace(15),
-                PossibleInjuriesItem(
-                  image:
-                      'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/Desktop%20Screenshot%202024.02.20%20-%2019.32.30.09.png',
-                  title: 'Quadriceps & Hamstring Strains',
+                SizedBox(
+                  height: 565,
+                  child: PossibleInjuriesListBlocBuilder(),
                 ),
                 verticalSpace(15),
               ],

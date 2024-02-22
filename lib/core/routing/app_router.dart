@@ -1,3 +1,5 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sports_injury_app/core/di/dependency_injection.dart';
 import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
@@ -5,6 +7,8 @@ import 'package:sports_injury_app/features/injury_details/ui/screens/injury_deta
 import 'package:sports_injury_app/features/login/ui/screens/login_screen.dart';
 import 'package:sports_injury_app/features/onBoarding/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
+import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possible_injuries_cubit.dart';
 import 'package:sports_injury_app/features/signup/ui/screens/signup_screen.dart';
 
 import '../../features/injury_region/ui/screens/injury_region.dart';
@@ -45,8 +49,12 @@ class AppRouter {
         final Map<String, dynamic>? args =
             settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
-          builder: (_) =>
-              PossibleInjuriescreen(injuryRegion: args?['injuryRegion'] ?? ''),
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                PossibleInjuriesCubit(locator.get<InjuriesRepoImpl>()),
+            child: PossibleInjuriescreen(
+                injuryRegion: args?['injuryRegion'] ?? ''),
+          ),
         );
       case Routes.injuryDetails:
         final Map<String, dynamic>? args =
