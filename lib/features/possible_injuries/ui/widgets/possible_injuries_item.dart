@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_injury_app/core/Helpers/extensions.dart';
+import 'package:sports_injury_app/features/possible_injuries/data/models/injuries_model.dart';
 
 import '../../../../core/Helpers/spacing.dart';
 import '../../../../core/routing/routes.dart';
@@ -9,12 +10,11 @@ import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles_manager.dart';
 
 class PossibleInjuriesItem extends StatelessWidget {
-  final String title;
-  final String? image;
+  final InjuriesModel injuriesModel;
+
   const PossibleInjuriesItem({
     super.key,
-    required this.title,
-    this.image,
+    required this.injuriesModel,
   });
 
   @override
@@ -23,7 +23,10 @@ class PossibleInjuriesItem extends StatelessWidget {
       onTap: () {
         context.pushNamed(
           Routes.injuryDetails,
-          arguments: {'injuryName': title, 'injuryImage': image},
+          arguments: {
+            'injuryName': injuriesModel.name,
+            'injuryImage': injuriesModel.image
+          },
         );
       },
       child: Container(
@@ -46,7 +49,7 @@ class PossibleInjuriesItem extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: CachedNetworkImage(imageUrl: '$image'),
+                  child: CachedNetworkImage(imageUrl: '${injuriesModel.image}'),
                 ),
               ],
             ),
@@ -55,7 +58,7 @@ class PossibleInjuriesItem extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  title,
+                  injuriesModel.name ?? '',
                   style: getBoldStyle(
                       color: ColorManger.darkPrimary, fontSize: 14.sp),
                 ),
