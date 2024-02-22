@@ -1,6 +1,7 @@
 import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
+import 'package:sports_injury_app/features/injury_details/ui/screens/injury_details.dart';
 import 'package:sports_injury_app/features/login/ui/screens/login_screen.dart';
 import 'package:sports_injury_app/features/onBoarding/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,15 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) =>
               PossibleInjuriescreen(injuryRegion: args?['injuryRegion'] ?? ''),
+        );
+      case Routes.injuryDetails:
+        final Map<String, dynamic>? args =
+            settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          builder: (_) => InjuryDetails(
+            injuryName: args?['injuryName'] ?? '',
+            injuryImage: args?['injuryImage'] ?? '',
+          ),
         );
       default:
         return MaterialPageRoute(

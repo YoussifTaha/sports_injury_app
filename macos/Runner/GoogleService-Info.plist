@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBcavwcUD0OmQ3bm6ff4uGgTserQiuzDDQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>518459745857</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.sportsInjuryApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>sports-injuries-10be1</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sports-injuries-10be1.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:518459745857:ios:0468fbf748ee71632508c0</string>
+</dict>
+</plist>

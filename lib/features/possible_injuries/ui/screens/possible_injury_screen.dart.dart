@@ -42,25 +42,25 @@ class PossibleInjuriescreen extends StatelessWidget {
                 PossibleInjuriesItem(
                   image:
                       'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/acl-tear.png',
-                  title: 'ACL',
+                  title: 'ACL Tear',
                 ),
                 verticalSpace(15),
                 PossibleInjuriesItem(
                   image:
                       'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/PCL-Tear.png',
-                  title: 'PCL',
+                  title: 'PCL Tear',
                 ),
                 verticalSpace(15),
                 PossibleInjuriesItem(
                   image:
                       'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/what-is-the-difference-between-an-acl-tear-and-an-mcl-tear-2.png',
-                  title: 'MCL',
+                  title: 'MCL Tear',
                 ),
                 verticalSpace(15),
                 PossibleInjuriesItem(
                   image:
                       'https://raw.githubusercontent.com/madjoz60/sports_injury_app_images/main/Desktop%20Screenshot%202024.02.20%20-%2019.45.58.53.png',
-                  title: 'LCL',
+                  title: 'LCL Tear',
                 ),
                 verticalSpace(15),
                 PossibleInjuriesItem(
