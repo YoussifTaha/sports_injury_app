@@ -2,20 +2,42 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
-import 'package:sports_injury_app/features/injury_details/ui/widgets/injury_mechanism.dart';
-import 'package:sports_injury_app/features/injury_details/ui/widgets/tests.dart';
-import 'package:sports_injury_app/features/injury_details/ui/widgets/treatment.dart';
-
+import 'package:sports_injury_app/features/injury_details/logic/tests_cubit/tests_cubit_cubit.dart';
+import 'package:sports_injury_app/features/injury_details/logic/treatment_cubit/treatment_cubit_cubit.dart';
+import 'package:sports_injury_app/features/possible_injuries/data/models/injuries_model.dart';
 import '../../../../core/Helpers/spacing.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles_manager.dart';
+import '../../logic/mechanism_cubit/injury_mechanism_cubit.dart';
+import '../widgets/injury_mechanisms_list_bloc_builder.dart';
+import '../widgets/injury_tests_list_bloc_builder.dart';
+import '../widgets/injury_treatment_list_bloc_builder.dart';
 
-class InjuryDetails extends StatelessWidget {
-  final String injuryName;
-  final String injuryImage;
+class InjuryDetails extends StatefulWidget {
+  final String regionName;
+  final InjuriesModel injuriesModel;
   const InjuryDetails(
-      {Key? key, required this.injuryName, required this.injuryImage})
+      {Key? key, required this.regionName, required this.injuriesModel})
       : super(key: key);
+
+  @override
+  State<InjuryDetails> createState() => _InjuryMechanismState();
+}
+
+class _InjuryMechanismState extends State<InjuryDetails> {
+  @override
+  void initState() {
+    InjuryMechanismCubit.get(context).fetchInjuriesMechanisms(
+        regionName: widget.regionName,
+        injuryName: widget.injuriesModel.name ?? '');
+    InjuryTestsCubit.get(context).fetchInjuriesTests(
+        regionName: widget.regionName,
+        injuryName: widget.injuriesModel.name ?? '');
+    InjuryTreatmentCubit.get(context).fetchInjuriesTreatment(
+        regionName: widget.regionName,
+        injuryName: widget.injuriesModel.name ?? '');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +50,13 @@ class InjuryDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '$injuryName',
+                widget.injuriesModel.name ?? '',
                 style: getBoldStyle(
                     color: ColorManger.darkPrimary, fontSize: 22.sp),
               ),
               verticalSpace(20),
               Text(
-                'ACL injuries are one of the most common injuries that occur in soccer (football) .They occur when the ACL loses its continuity. They can range from mild (such as small tears/sprain) to severe (when the ligament is completely torn).',
+                widget.injuriesModel.description ?? '',
                 style: getRegularStyle(
                     color: ColorManger.regularGrey.withOpacity(0.8),
                     fontSize: 14.sp,
@@ -44,7 +66,8 @@ class InjuryDetails extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 150.h,
-                child: CachedNetworkImage(imageUrl: injuryImage),
+                child: CachedNetworkImage(
+                    imageUrl: widget.injuriesModel.image ?? ''),
               ),
               verticalSpace(30),
               Text(
@@ -61,7 +84,7 @@ class InjuryDetails extends StatelessWidget {
                     color: ColorManger.darkPrimary, fontSize: 18.sp),
               ),
               verticalSpace(20),
-              InjuryMechanism(),
+              InjuriesMechanismListBlocBuilder(),
               verticalSpace(20),
               myHorizontalDivider(),
               verticalSpace(20),
@@ -71,7 +94,7 @@ class InjuryDetails extends StatelessWidget {
                     color: ColorManger.darkPrimary, fontSize: 18.sp),
               ),
               verticalSpace(20),
-              InjuryTests(),
+              InjuriesTestsListBlocBuilder(),
               verticalSpace(20),
               myHorizontalDivider(),
               verticalSpace(20),
@@ -81,7 +104,15 @@ class InjuryDetails extends StatelessWidget {
                     color: ColorManger.darkPrimary, fontSize: 18.sp),
               ),
               verticalSpace(10),
-              Treatment()
+              Text(
+                widget.injuriesModel.treatmentDescription ?? '',
+                style: getRegularStyle(
+                    color: ColorManger.regularGrey,
+                    fontSize: 14.sp,
+                    textHeight: 1.2),
+              ),
+              verticalSpace(20),
+              InjuriesTreatmentListBlocBuilder(),
             ],
           ),
         ),
