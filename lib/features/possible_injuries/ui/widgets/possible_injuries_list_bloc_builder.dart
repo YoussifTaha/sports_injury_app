@@ -5,7 +5,8 @@ import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possibl
 import 'package:sports_injury_app/features/possible_injuries/ui/widgets/possible_injuries_item.dart';
 
 class PossibleInjuriesListBlocBuilder extends StatelessWidget {
-  const PossibleInjuriesListBlocBuilder({super.key});
+  final String regionName;
+  const PossibleInjuriesListBlocBuilder({super.key, required this.regionName});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,10 @@ class PossibleInjuriesListBlocBuilder extends StatelessWidget {
         return ListView.separated(
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            return PossibleInjuriesItem(injuriesModel: state.injuries[index]);
+            return PossibleInjuriesItem(
+              injuriesModel: state.injuries[index],
+              regionName: regionName,
+            );
           },
           itemCount: state.injuries.length,
           separatorBuilder: (context, index) => verticalSpace(10),

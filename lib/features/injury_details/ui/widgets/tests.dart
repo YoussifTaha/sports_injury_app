@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_injury_app/features/injury_details/data/models/details_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../../core/Helpers/spacing.dart';
 import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles_manager.dart';
 
 class InjuryTests extends StatefulWidget {
+  final DetailsModel testsModel;
   const InjuryTests({
     super.key,
+    required this.testsModel,
   });
 
   @override
@@ -22,8 +25,7 @@ class _InjuryTestsState extends State<InjuryTests>
   void initState() {
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-          trimWhitespaces: true,
-          'https://youtu.be/JFkbKNNa7xQ?si=-w_CsgBmMyl0pKpP')!,
+          trimWhitespaces: true, widget.testsModel.videoUrl ?? '')!,
       flags: YoutubePlayerFlags(
         startAt: 20,
         autoPlay: false,
@@ -46,12 +48,12 @@ class _InjuryTestsState extends State<InjuryTests>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '1- Lachman Test',
+          widget.testsModel.name ?? '',
           style: getMediumStyle(color: Colors.black, fontSize: 14.sp),
         ),
         verticalSpace(5),
         Text(
-          'the patient lies on their back with the knee bent at a slight angle, and the examiner stabilizes the thigh while applying a forward force to the lower leg. Increased anterior translation compared to the uninjured knee suggests potential ACL laxity',
+          widget.testsModel.description ?? '',
           style: getRegularStyle(
               color: ColorManger.regularGrey, fontSize: 14.sp, textHeight: 1.2),
         ),

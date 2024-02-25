@@ -10,11 +10,12 @@ import '../../../../core/theming/colors.dart';
 import '../../../../core/theming/styles_manager.dart';
 
 class PossibleInjuriesItem extends StatelessWidget {
+  final String regionName;
   final InjuriesModel injuriesModel;
-
   const PossibleInjuriesItem({
     super.key,
     required this.injuriesModel,
+    required this.regionName,
   });
 
   @override
@@ -24,8 +25,8 @@ class PossibleInjuriesItem extends StatelessWidget {
         context.pushNamed(
           Routes.injuryDetails,
           arguments: {
-            'injuryName': injuriesModel.name,
-            'injuryImage': injuriesModel.image
+            'regionName': regionName,
+            'injuriesModel': injuriesModel,
           },
         );
       },

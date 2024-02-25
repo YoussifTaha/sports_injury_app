@@ -49,7 +49,9 @@ class _PossibleInjuriescreenState extends State<PossibleInjuriescreen> {
                 verticalSpace(30),
                 SizedBox(
                   height: 565,
-                  child: PossibleInjuriesListBlocBuilder(),
+                  child: PossibleInjuriesListBlocBuilder(
+                    regionName: widget.injuryRegion,
+                  ),
                 ),
                 verticalSpace(15),
               ],

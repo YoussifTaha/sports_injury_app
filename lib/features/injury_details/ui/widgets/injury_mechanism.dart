@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_injury_app/features/injury_details/data/models/details_model.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../../../core/Helpers/spacing.dart';
 import '../../../../core/theming/styles_manager.dart';
 
 class InjuryMechanism extends StatefulWidget {
+  final DetailsModel mechanismModel;
   const InjuryMechanism({
     super.key,
+    required this.mechanismModel,
   });
 
   @override
@@ -21,8 +24,7 @@ class _InjuryMechanismState extends State<InjuryMechanism>
   void initState() {
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-          trimWhitespaces: true,
-          'https://www.youtube.com/watch?v=7LtDc1ExinM')!,
+          trimWhitespaces: true, widget.mechanismModel.videoUrl ?? '')!,
       flags: YoutubePlayerFlags(
         startAt: 15,
         autoPlay: false,
@@ -51,7 +53,7 @@ class _InjuryMechanismState extends State<InjuryMechanism>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '1 : Landing Incorrectly from a Jump: Awkward landings, particularly when landing with the knee in a slightly bent or hyperextended position, can put excessive stress on the ACL.',
+              widget.mechanismModel.description ?? '',
               style: getRegularStyle(
                   color: Colors.black, fontSize: 14.sp, textHeight: 1.2),
             ),
