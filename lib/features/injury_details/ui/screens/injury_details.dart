@@ -104,13 +104,15 @@ class _InjuryMechanismState extends State<InjuryDetails> {
                     color: ColorManger.darkPrimary, fontSize: 18.sp),
               ),
               verticalSpace(10),
-              Text(
-                widget.injuriesModel.treatmentDescription ?? '',
-                style: getRegularStyle(
-                    color: ColorManger.regularGrey,
-                    fontSize: 14.sp,
-                    textHeight: 1.2),
-              ),
+              widget.injuriesModel.treatmentDescription == ''
+                  ? SizedBox.shrink()
+                  : Text(
+                      widget.injuriesModel.treatmentDescription ?? '',
+                      style: getRegularStyle(
+                          color: ColorManger.regularGrey,
+                          fontSize: 14.sp,
+                          textHeight: 1.2),
+                    ),
               verticalSpace(20),
               InjuriesTreatmentListBlocBuilder(),
             ],

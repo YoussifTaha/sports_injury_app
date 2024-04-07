@@ -24,7 +24,7 @@ class InjuriesTreatmentListBlocBuilder extends StatelessWidget {
                   treatmentModel: state.treatment[index],
                 );
               },
-              separatorBuilder: (context, index) => verticalSpace(20),
+              separatorBuilder: (context, index) => verticalSpace(10),
               itemCount: state.treatment.length);
         } else if (state is InjuriesTreatmentError) {
           return Text(state.error);

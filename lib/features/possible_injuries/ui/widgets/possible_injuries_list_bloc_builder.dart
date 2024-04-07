@@ -17,6 +17,7 @@ class PossibleInjuriesListBlocBuilder extends StatelessWidget {
       }
       if (state is PossibleInjuriesSuccsses) {
         return ListView.separated(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemBuilder: (context, index) {
             return PossibleInjuriesItem(

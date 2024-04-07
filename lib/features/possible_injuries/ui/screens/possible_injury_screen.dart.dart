@@ -29,7 +29,7 @@ class _PossibleInjuriescreenState extends State<PossibleInjuriescreen> {
         appBar: AppBar(),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,13 +47,10 @@ class _PossibleInjuriescreenState extends State<PossibleInjuriescreen> {
                       textHeight: 1.1),
                 ),
                 verticalSpace(30),
-                SizedBox(
-                  height: 565,
-                  child: PossibleInjuriesListBlocBuilder(
-                    regionName: widget.injuryRegion,
-                  ),
+                PossibleInjuriesListBlocBuilder(
+                  regionName: widget.injuryRegion,
                 ),
-                verticalSpace(15),
+                verticalSpace(20),
               ],
             ),
           ),

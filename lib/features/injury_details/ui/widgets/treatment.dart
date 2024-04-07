@@ -25,7 +25,8 @@ class _TreatmentState extends State<Treatment> with TickerProviderStateMixin {
   void initState() {
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-          trimWhitespaces: true, widget.treatmentModel.videoUrl ?? '')!,
+              trimWhitespaces: true, widget.treatmentModel.videoUrl ?? '') ??
+          '',
       flags: YoutubePlayerFlags(
         startAt: 20,
         autoPlay: false,
@@ -50,30 +51,34 @@ class _TreatmentState extends State<Treatment> with TickerProviderStateMixin {
       children: [
         Text(
           widget.treatmentModel.name ?? '',
-          style: getMediumStyle(color: Colors.black, fontSize: 14.sp),
+          style: getMediumStyle(color: Colors.black, fontSize: 18.sp),
         ),
         verticalSpace(5),
-        ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return Text(
-                goals?[index],
-                style: getRegularStyle(
-                    color: ColorManger.regularGrey,
-                    fontSize: 14.sp,
-                    textHeight: 1.2),
-              );
-            },
-            itemCount: goals?.length),
+        goals == []
+            ? SizedBox.shrink()
+            : ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Text(
+                    goals?[index],
+                    style: getRegularStyle(
+                        color: ColorManger.regularGrey,
+                        fontSize: 14.sp,
+                        textHeight: 1.2),
+                  );
+                },
+                itemCount: goals?.length),
         verticalSpace(10),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: YoutubePlayer(
-            controller: youtubePlayerController,
-            showVideoProgressIndicator: true,
-          ),
-        ),
+        widget.treatmentModel.videoUrl == ''
+            ? SizedBox.shrink()
+            : ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: YoutubePlayer(
+                  controller: youtubePlayerController,
+                  showVideoProgressIndicator: true,
+                ),
+              ),
       ],
     );
   }
