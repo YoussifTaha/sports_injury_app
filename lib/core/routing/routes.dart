@@ -7,4 +7,5 @@ class Routes {
   static const String injuryRegionScreen = '/injuryRegionScreen';
   static const String possibleInjuriescreen = '/possibleInjuriescreen';
   static const String injuryDetails = '/injuryDetails';
+  static const String bag = '/bag';
 }

@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sports_injury_app/core/di/dependency_injection.dart';
 import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
+import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/mechanism/mechanism_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/tests/tests_repo_impl.dart';
@@ -86,6 +87,10 @@ class AppRouter {
               injuriesModel: args?['injuriesModel'] ?? '',
             ),
           ),
+        );
+      case Routes.bag:
+        return MaterialPageRoute(
+          builder: (_) => const BagScreen(),
         );
       default:
         return MaterialPageRoute(
