@@ -1,5 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
+import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
@@ -54,51 +55,55 @@ class HomeScreen extends StatelessWidget {
                             color: ColorManger.darkPrimary, fontSize: 18.sp),
                       ),
                       verticalSpace(10),
-                      Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            width: 350.w,
-                            decoration: BoxDecoration(
-                              color: ColorManger.lightBackground,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Row(
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.all(5),
-                                      height: 53.h,
-                                      width: 73.w,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      child: CachedNetworkImage(
-                                          fit: BoxFit.cover,
-                                          imageUrl:
-                                              'https://phabcart.imgix.net/cdn/scdn/images/uploads/KX1520-Pitchside-Medics-Physio-Bag-Kit.jpg'),
-                                    ),
-                                  ],
-                                ),
-                                horizontalSpace(10),
-                                Expanded(
-                                  child: Column(
+                      InkWell(
+                        onTap: () {
+                          context.pushNamed(Routes.bag);
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              width: 350.w,
+                              decoration: BoxDecoration(
+                                color: ColorManger.lightBackground,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Row(
+                                children: [
+                                  Column(
                                     children: [
-                                      Text(
-                                        'See What You Need Inside Your Physio Bag',
-                                        style: getBoldStyle(
-                                            color: ColorManger.darkPrimary,
-                                            fontSize: 12.sp),
+                                      Container(
+                                        padding: EdgeInsets.all(5),
+                                        height: 53.h,
+                                        width: 73.w,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Image.asset(
+                                            'assets/icons/first-aid.png'),
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                  horizontalSpace(10),
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'See What You Need Inside Your Physio Bag',
+                                          style: getBoldStyle(
+                                              color: ColorManger.darkPrimary,
+                                              fontSize: 12.sp),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                       verticalSpace(20),
                       Row(

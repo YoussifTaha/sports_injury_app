@@ -46,6 +46,7 @@ dependencies:
   equatable: ^2.0.5
   dartz: ^0.10.1
   get_it: ^7.6.7
+  expansion_widget: ^0.0.3
   
 
 dev_dependencies:
@@ -82,6 +83,7 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
