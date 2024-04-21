@@ -1,13 +1,13 @@
 import 'package:sports_injury_app/core/theming/colors.dart';
-import 'package:flutter/material.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:sports_injury_app/features/login/logic/cubit/login_cubit.dart';
+import 'package:flutter/material.dart';
 
 class EmailField extends StatelessWidget {
   const EmailField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
     return defaultForm(
         fillColor: ColorManger.moreLightGray,
         enabledBorder: OutlineInputBorder(
@@ -32,7 +32,7 @@ class EmailField extends StatelessWidget {
         textStyle: const TextStyle(
           color: ColorManger.primary,
         ),
-        controller: (emailController),
+        controller: (LoginCubit.get(context).emailController),
         type: TextInputType.emailAddress,
         validate: (value) {
           if (value!.isEmpty) {

@@ -3,7 +3,9 @@ import 'package:sports_injury_app/features/account_type/data/repos/account_type_
 import 'package:sports_injury_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/mechanism/mechanism_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/physical_examination/physical_examination_repo_impl.dart';
+import 'package:sports_injury_app/features/login/data/repos/login_repo_impl.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
+import 'package:sports_injury_app/features/post_login/data/repo/post_login_repo_impl.dart';
 import 'package:sports_injury_app/features/signup/data/repos/signup_repo_impl.dart';
 import '../../features/injury_details/data/repos/tests/tests_repo_impl.dart';
 import '../../features/injury_details/data/repos/treatment/treatment_repo_impl.dart';
@@ -20,4 +22,6 @@ void setupLocator() {
   locator.registerSingleton<SignUpRepoImpl>(SignUpRepoImpl());
   locator.registerSingleton<AccountTypeRepoImpl>(AccountTypeRepoImpl());
   locator.registerSingleton<HomeRepoImpl>(HomeRepoImpl());
+  locator.registerSingleton<PostLoginRepoImpl>(PostLoginRepoImpl());
+  locator.registerSingleton<LoginRepoImpl>(LoginRepoImpl());
 }
