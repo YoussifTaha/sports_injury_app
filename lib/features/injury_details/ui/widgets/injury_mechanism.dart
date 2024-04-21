@@ -24,9 +24,10 @@ class _InjuryMechanismState extends State<InjuryMechanism>
   void initState() {
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-          trimWhitespaces: true, widget.mechanismModel.videoUrl ?? '')!,
+              trimWhitespaces: true, widget.mechanismModel.videoUrl ?? '') ??
+          '',
       flags: YoutubePlayerFlags(
-        startAt: 15,
+        startAt: 20,
         autoPlay: false,
         mute: true,
         loop: true,
@@ -43,45 +44,26 @@ class _InjuryMechanismState extends State<InjuryMechanism>
 
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayerBuilder(
-      player: YoutubePlayer(
-        controller: youtubePlayerController,
-        showVideoProgressIndicator: true,
-      ),
-      builder: (p0, p1) {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.mechanismModel.description ?? '',
-              style: getRegularStyle(
-                  color: Colors.black, fontSize: 14.sp, textHeight: 1.2),
-            ),
-            verticalSpace(20),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          color: Colors.black,
-                          child: YoutubePlayer(
-                            controller: youtubePlayerController,
-                            showVideoProgressIndicator: true,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.mechanismModel.description ?? '',
+          style: getRegularStyle(
+              color: Colors.black, fontSize: 14.sp, textHeight: 1.2),
+        ),
+        verticalSpace(20),
+        widget.mechanismModel.videoUrl == '' ||
+                widget.mechanismModel.videoUrl == null
+            ? SizedBox.shrink()
+            : ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: YoutubePlayer(
+                  controller: youtubePlayerController,
+                  showVideoProgressIndicator: true,
                 ),
-              ],
-            ),
-          ],
-        );
-      },
+              ),
+      ],
     );
   }
 }

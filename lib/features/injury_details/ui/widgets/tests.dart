@@ -20,12 +20,14 @@ class InjuryTests extends StatefulWidget {
 class _InjuryTestsState extends State<InjuryTests>
     with TickerProviderStateMixin {
   late YoutubePlayerController youtubePlayerController;
+  late List<dynamic>? goals;
 
   @override
   void initState() {
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(
-          trimWhitespaces: true, widget.testsModel.videoUrl ?? '')!,
+              trimWhitespaces: true, widget.testsModel.videoUrl ?? '') ??
+          '',
       flags: YoutubePlayerFlags(
         startAt: 20,
         autoPlay: false,
@@ -33,6 +35,7 @@ class _InjuryTestsState extends State<InjuryTests>
         loop: true,
       ),
     );
+    goals = widget.testsModel.goals;
     super.initState();
   }
 
@@ -58,13 +61,36 @@ class _InjuryTestsState extends State<InjuryTests>
               color: ColorManger.regularGrey, fontSize: 14.sp, textHeight: 1.2),
         ),
         verticalSpace(10),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: YoutubePlayer(
-            controller: youtubePlayerController,
-            showVideoProgressIndicator: true,
-          ),
-        ),
+        goals == [] || goals == null
+            ? SizedBox.shrink()
+            : ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Text(
+                    goals?[index],
+                    style: getRegularStyle(
+                        color: ColorManger.regularGrey,
+                        fontSize: 14.sp,
+                        textHeight: 1.2),
+                  );
+                },
+                itemCount: goals?.length),
+        verticalSpace(10),
+        widget.testsModel.videoUrl == '' || widget.testsModel.videoUrl == null
+            ? SizedBox.shrink()
+            : Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: YoutubePlayer(
+                      controller: youtubePlayerController,
+                      showVideoProgressIndicator: true,
+                    ),
+                  ),
+                  verticalSpace(10),
+                ],
+              ),
       ],
     );
   }

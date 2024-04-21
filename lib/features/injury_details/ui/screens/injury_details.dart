@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:sports_injury_app/features/injury_details/logic/physical_examination_cubit/physical_examination_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/logic/tests_cubit/tests_cubit_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/logic/treatment_cubit/treatment_cubit_cubit.dart';
+import 'package:sports_injury_app/features/injury_details/ui/widgets/injury_physical_examination_list_bloc_builder.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/models/injuries_model.dart';
 import '../../../../core/Helpers/spacing.dart';
 import '../../../../core/theming/colors.dart';
@@ -33,6 +35,10 @@ class _InjuryMechanismState extends State<InjuryDetails> {
     InjuryTestsCubit.get(context).fetchInjuriesTests(
         regionName: widget.regionName,
         injuryName: widget.injuriesModel.name ?? '');
+    InjuryPhysicalExaminationCubit.get(context)
+        .fetchInjuriesPhysicalExamination(
+            regionName: widget.regionName,
+            physicalExaminationName: widget.injuriesModel.name ?? '');
     InjuryTreatmentCubit.get(context).fetchInjuriesTreatment(
         regionName: widget.regionName,
         injuryName: widget.injuriesModel.name ?? '');
@@ -77,13 +83,13 @@ class _InjuryMechanismState extends State<InjuryDetails> {
                     fontSize: 14.sp,
                     textHeight: 1.1),
               ),
-              verticalSpace(10),
+              verticalSpace(20),
               Text(
                 'Injury Mechanisms',
                 style: getBoldStyle(
                     color: ColorManger.darkPrimary, fontSize: 18.sp),
               ),
-              verticalSpace(20),
+              verticalSpace(10),
               InjuriesMechanismListBlocBuilder(),
               verticalSpace(20),
               myHorizontalDivider(),
@@ -98,6 +104,12 @@ class _InjuryMechanismState extends State<InjuryDetails> {
               verticalSpace(20),
               myHorizontalDivider(),
               verticalSpace(20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InjuriesPhysicalExaminationListBlocBuilder(),
+                ],
+              ),
               Text(
                 'Treatment Program',
                 style: getBoldStyle(

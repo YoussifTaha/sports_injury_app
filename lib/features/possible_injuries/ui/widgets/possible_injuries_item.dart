@@ -55,15 +55,17 @@ class PossibleInjuriesItem extends StatelessWidget {
               ],
             ),
             horizontalSpace(10),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  injuriesModel.name ?? '',
-                  style: getBoldStyle(
-                      color: ColorManger.darkPrimary, fontSize: 14.sp),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    injuriesModel.name ?? '',
+                    style: getBoldStyle(
+                        color: ColorManger.darkPrimary, fontSize: 14.sp),
+                  ),
+                ],
+              ),
             )
           ],
         ),

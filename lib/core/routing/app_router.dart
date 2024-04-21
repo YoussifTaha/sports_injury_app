@@ -5,8 +5,10 @@ import 'package:sports_injury_app/features/account_type/ui/screens/account_type_
 import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/mechanism/mechanism_repo_impl.dart';
+import 'package:sports_injury_app/features/injury_details/data/repos/physical_examination/physical_examination_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/tests/tests_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/treatment/treatment_repo_impl.dart';
+import 'package:sports_injury_app/features/injury_details/logic/physical_examination_cubit/physical_examination_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/logic/tests_cubit/tests_cubit_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/logic/treatment_cubit/treatment_cubit_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/ui/screens/injury_details.dart';
@@ -76,6 +78,10 @@ class AppRouter {
               BlocProvider<InjuryTestsCubit>(
                 create: (context) =>
                     InjuryTestsCubit(locator.get<TestsRepoImpl>()),
+              ),
+              BlocProvider<InjuryPhysicalExaminationCubit>(
+                create: (context) => InjuryPhysicalExaminationCubit(
+                    locator.get<PhysicalExaminationRepoImpl>()),
               ),
               BlocProvider<InjuryTreatmentCubit>(
                 create: (context) =>

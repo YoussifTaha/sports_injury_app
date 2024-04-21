@@ -49,12 +49,31 @@ class _TreatmentState extends State<Treatment> with TickerProviderStateMixin {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          widget.treatmentModel.name ?? '',
-          style: getMediumStyle(color: Colors.black, fontSize: 18.sp),
-        ),
+        widget.treatmentModel.name == null || widget.treatmentModel.name == ''
+            ? SizedBox.shrink()
+            : Text(
+                widget.treatmentModel.name ?? '',
+                style: getMediumStyle(
+                    color: Colors.black, fontSize: 18.sp, textHeight: 1.1.sp),
+              ),
         verticalSpace(5),
-        goals == []
+        widget.treatmentModel.description == null ||
+                widget.treatmentModel.description == ''
+            ? SizedBox.shrink()
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.treatmentModel.description ?? '',
+                    style: getRegularStyle(
+                        color: ColorManger.regularGrey,
+                        fontSize: 15.sp,
+                        textHeight: 1.2.sp),
+                  ),
+                  verticalSpace(5),
+                ],
+              ),
+        goals == [] || goals == null
             ? SizedBox.shrink()
             : ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
@@ -62,22 +81,28 @@ class _TreatmentState extends State<Treatment> with TickerProviderStateMixin {
                 itemBuilder: (context, index) {
                   return Text(
                     goals?[index],
-                    style: getRegularStyle(
-                        color: ColorManger.regularGrey,
+                    style: getThinStyle(
+                        color: Colors.black.withOpacity(0.7),
                         fontSize: 14.sp,
                         textHeight: 1.2),
                   );
                 },
                 itemCount: goals?.length),
         verticalSpace(10),
-        widget.treatmentModel.videoUrl == ''
+        widget.treatmentModel.videoUrl == '' ||
+                widget.treatmentModel.videoUrl == null
             ? SizedBox.shrink()
-            : ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: YoutubePlayer(
-                  controller: youtubePlayerController,
-                  showVideoProgressIndicator: true,
-                ),
+            : Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: YoutubePlayer(
+                      controller: youtubePlayerController,
+                      showVideoProgressIndicator: true,
+                    ),
+                  ),
+                  verticalSpace(10),
+                ],
               ),
       ],
     );

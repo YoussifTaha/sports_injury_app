@@ -21,6 +21,19 @@ class MyFirebaseFireStoreService {
         .get();
   }
 
+  Future<QuerySnapshot<Map<String, dynamic>>>
+      getInjuriesPhysicalExaminationCollection(
+          {required String regionName,
+          required String physicalExaminationName}) async {
+    return await FirebaseFirestore.instance
+        .collection('regions')
+        .doc(regionName)
+        .collection('injuries')
+        .doc(physicalExaminationName)
+        .collection('PhysicalExamination')
+        .get();
+  }
+
   Future<QuerySnapshot<Map<String, dynamic>>> getInjuriesTestsCollection(
       {required String regionName, required String injuryName}) async {
     return await FirebaseFirestore.instance
