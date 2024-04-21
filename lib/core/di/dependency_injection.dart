@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:sports_injury_app/features/account_type/data/repos/account_type_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/mechanism/mechanism_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/physical_examination/physical_examination_repo_impl.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
@@ -16,4 +17,5 @@ void setupLocator() {
       PhysicalExaminationRepoImpl());
   locator.registerSingleton<TreatmentRepoImpl>(TreatmentRepoImpl());
   locator.registerSingleton<SignUpRepoImpl>(SignUpRepoImpl());
+  locator.registerSingleton<AccountTypeRepoImpl>(AccountTypeRepoImpl());
 }

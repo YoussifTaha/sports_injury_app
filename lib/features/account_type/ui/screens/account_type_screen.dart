@@ -1,16 +1,24 @@
-import 'package:sports_injury_app/core/Helpers/extensions.dart';
+import 'package:sports_injury_app/core/Helpers/cache_helper.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:sports_injury_app/features/account_type/logic/cubit/account_type_cubit.dart';
 import 'package:sports_injury_app/features/account_type/ui/widgets/account_type_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/routing/routes.dart';
-
 class AccountType extends StatefulWidget {
-  const AccountType({Key? key}) : super(key: key);
+  final String email;
+  final String fullName;
+  final String phone;
+  const AccountType(
+      {Key? key,
+      required this.email,
+      required this.fullName,
+      required this.phone})
+      : super(key: key);
 
   @override
   State<AccountType> createState() => _AccountTypeState();
@@ -36,7 +44,7 @@ class _AccountTypeState extends State<AccountType> {
               ),
               verticalSpace(10),
               Text(
-                'Choose whether you are a Physiotherapist or a Female patient',
+                'Choose whether you are a Physiotherapist or a Sports patient',
                 textAlign: TextAlign.center,
                 style: getRegularStyle(
                     color: ColorManger.regularGrey,
@@ -44,20 +52,46 @@ class _AccountTypeState extends State<AccountType> {
                     textHeight: 1.4.h),
               ),
               verticalSpace(50),
-              const AccountTypeCard(
-                accountType: 'doctor',
-                accountTypeImagePath: 'assets/images/doctorUser.png',
-                accountTypeTitle: 'Physiotherapist',
-                description:
-                    'Help yourself in the evaluation process with \ntools that make you get \nyour patients to their\noptimum recovery.',
+              BlocConsumer<AccountTypeCubit, AccountTypeState>(
+                listener: (context, state) {
+                  if (state is CreateUserSuccessState) {
+                    AccountTypeCubit.get(context)
+                        .navigateBasedOnUserType(context: context);
+                  }
+                },
+                builder: (context, state) {
+                  return InkWell(
+                    onTap: () {
+                      AccountTypeCubit.get(context)
+                          .makeDoctorUserType(accountType: 'userDoctor');
+                    },
+                    child: const AccountTypeCard(
+                      accountType: 'Doctor',
+                      accountTypeImagePath: 'assets/images/doctorUser.png',
+                      accountTypeTitle: 'Physiotherapist',
+                      description:
+                          'Help yourself in the evaluation process with \ntools that make you get \nyour patients to their\noptimum recovery.',
+                    ),
+                  );
+                },
               ),
               verticalSpace(25),
-              const AccountTypeCard(
-                accountType: 'patient',
-                accountTypeImagePath: 'assets/images/patientUser.png',
-                accountTypeTitle: 'Sports Patient',
-                description:
-                    'Follow up with your own \nphysiotherapist and keep up\nthe spirit.',
+              BlocBuilder<AccountTypeCubit, AccountTypeState>(
+                builder: (context, state) {
+                  return InkWell(
+                    onTap: () {
+                      AccountTypeCubit.get(context)
+                          .makePatientUserType(accountType: 'userPatient');
+                    },
+                    child: const AccountTypeCard(
+                      accountType: 'Patient',
+                      accountTypeImagePath: 'assets/images/patientUser.png',
+                      accountTypeTitle: 'Sports Patient',
+                      description:
+                          'Follow up with your own \nphysiotherapist and keep up\nthe spirit.',
+                    ),
+                  );
+                },
               ),
               verticalSpace(50),
               RichText(
@@ -83,13 +117,25 @@ class _AccountTypeState extends State<AccountType> {
                 ),
               ),
               verticalSpace(20),
-              button(
-                  context: context,
-                  function: () {
-                    context.pushNamedAndRemoveUntill(Routes.homeScreen,
-                        predicate: (Route<dynamic> route) => false);
-                  },
-                  text: 'Next')
+              BlocBuilder<AccountTypeCubit, AccountTypeState>(
+                builder: (context, state) {
+                  if (state is CreateUserLoadingState) {
+                    return CircularProgressIndicator();
+                  }
+                  return button(
+                      context: context,
+                      function: () {
+                        AccountTypeCubit.get(context).userCreate(
+                            email: widget.email,
+                            fullName: widget.fullName,
+                            phone: widget.phone);
+
+                        CacheHelper.saveData(
+                            key: 'isAccountCreated', value: true);
+                      },
+                      text: 'Create Account');
+                },
+              )
             ],
           ),
         ),

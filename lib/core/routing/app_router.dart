@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sports_injury_app/core/di/dependency_injection.dart';
 import 'package:sports_injury_app/core/routing/routes.dart';
+import 'package:sports_injury_app/features/account_type/data/repos/account_type_repo_impl.dart';
+import 'package:sports_injury_app/features/account_type/logic/cubit/account_type_cubit.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
 import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
@@ -44,8 +46,17 @@ class AppRouter {
           ),
         );
       case Routes.accountTypeScreen:
+        final Map<String, dynamic>? args =
+            settings.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
-          builder: (_) => const AccountType(),
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                AccountTypeCubit(locator.get<AccountTypeRepoImpl>()),
+            child: AccountType(
+                email: args?['email'] ?? '',
+                fullName: args?['fullName'] ?? '',
+                phone: args?['phone'] ?? ''),
+          ),
         );
       case Routes.homeScreen:
         return MaterialPageRoute(
