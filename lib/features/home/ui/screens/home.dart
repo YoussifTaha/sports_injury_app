@@ -1,18 +1,34 @@
+import 'package:sports_injury_app/core/Helpers/cache_helper.dart';
 import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
+import 'package:sports_injury_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:sports_injury_app/features/home/ui/widgets/add_patient_card.dart';
 import 'package:sports_injury_app/features/home/ui/widgets/common_injuries_regions.dart';
 import 'package:sports_injury_app/features/home/ui/widgets/home_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sports_injury_app/features/home/ui/widgets/patients_card.dart';
+import 'package:sports_injury_app/features/home/ui/widgets/patients_list.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    HomeCubit.get(context)
+        .fetchMyPatients(uId: '${CacheHelper.getData(key: 'uId')}');
+    HomeCubit.get(context)
+        .fetchDoctorName(uId: '${CacheHelper.getData(key: 'uId')}');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Hello! Doctor Mohamed',
+                    'Hello! ${CacheHelper.getData(key: 'doctorName') ?? 'Doctor'}',
                     style: getBoldStyle(
                         color: ColorManger.darkPrimary, fontSize: 18.sp),
                   ),
@@ -128,14 +144,7 @@ class HomeScreen extends StatelessWidget {
                       verticalSpace(15),
                       SizedBox(
                         height: 380,
-                        child: ListView.separated(
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) {
-                              return PatientCard();
-                            },
-                            separatorBuilder: (context, index) =>
-                                verticalSpace(15),
-                            itemCount: 3),
+                        child: PatientsList(),
                       ),
                       myHorizontalDivider(),
                       verticalSpace(25),

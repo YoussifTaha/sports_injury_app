@@ -9,9 +9,10 @@ class UserModel extends Equatable {
   final String? chiefComplain;
   final String? firstSessionDate;
   final String? age;
+  final String? gender;
   final String? address;
   final String? occupation;
-  final String? eDD;
+  final String? injuryRegion;
   final String? weekNumber;
   final String? myDoctorUid;
   final int? patientId;
@@ -26,9 +27,10 @@ class UserModel extends Equatable {
       this.chiefComplain,
       this.firstSessionDate,
       this.age,
+      this.gender,
       this.address,
       this.occupation,
-      this.eDD,
+      this.injuryRegion,
       this.weekNumber,
       this.myDoctorUid,
       this.patientId,
@@ -45,9 +47,10 @@ class UserModel extends Equatable {
         chiefComplain: json['chiefComplain'] as String?,
         firstSessionDate: json['firstSessionDate'] as String?,
         age: json['age'] as String?,
+        gender: json['gender'] as String?,
         address: json['address'] as String?,
         occupation: json['occupation'] as String?,
-        eDD: json['eDD'] as String?,
+        injuryRegion: json['injuryRegion'] as String?,
         weekNumber: json['weekNumber'] as String?,
         myDoctorUid: json['myDoctorUid'] as String?,
       );
@@ -63,9 +66,10 @@ class UserModel extends Equatable {
         'chiefComplain': chiefComplain,
         'firstSessionDate': firstSessionDate,
         'age': age,
+        'gender': gender,
         'address': address,
         'occupation': occupation,
-        'eDD': eDD,
+        'injuryRegion': injuryRegion,
         'weekNumber': weekNumber,
         'myDoctorUid': myDoctorUid,
       };
@@ -83,9 +87,10 @@ class UserModel extends Equatable {
       chiefComplain,
       firstSessionDate,
       age,
+      gender,
       address,
       occupation,
-      eDD,
+      injuryRegion,
       weekNumber,
       myDoctorUid,
     ];

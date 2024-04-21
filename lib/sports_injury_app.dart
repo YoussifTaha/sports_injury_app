@@ -15,7 +15,7 @@ class SportsInjuryApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Antenatal App',
-        initialRoute: Routes.signupScreen,
+        initialRoute: Routes.homeScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

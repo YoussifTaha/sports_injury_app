@@ -4,9 +4,11 @@ import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_injury_app/features/signup/data/model/user_model.dart';
 
 class PatientCard extends StatelessWidget {
-  const PatientCard({super.key});
+  final UserModel patient;
+  const PatientCard({super.key, required this.patient});
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +38,27 @@ class PatientCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Mohamed Ahmed',
+                      patient.fullName,
                       style: getBoldStyle(
                           color: ColorManger.darkPrimary, fontSize: 16.sp),
                     ),
                     verticalSpace(5),
                     Text(
-                      'Age : 27',
+                      'Age : ${patient.age}',
                       style: getBoldStyle(
                           color: ColorManger.regularGrey.withOpacity(0.7),
                           fontSize: 12.sp),
                     ),
                     verticalSpace(5),
                     Text(
-                      'Gender : Male',
+                      'Gender : ${patient.gender}',
                       style: getBoldStyle(
                           color: ColorManger.regularGrey.withOpacity(0.7),
                           fontSize: 12.sp),
                     ),
                     verticalSpace(5),
                     Text(
-                      'Position : Attack',
+                      'Position : ${patient.occupation}',
                       style: getBoldStyle(
                           color: ColorManger.regularGrey.withOpacity(0.7),
                           fontSize: 12.sp),
@@ -81,7 +83,8 @@ class PatientCard extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Image.asset('assets/images/Knee.png'),
+                    child: Image.asset(
+                        'assets/images/${patient.injuryRegion}.png'),
                   ),
                   verticalSpace(10),
                   Text(

@@ -5,6 +5,8 @@ import 'package:sports_injury_app/features/account_type/data/repos/account_type_
 import 'package:sports_injury_app/features/account_type/logic/cubit/account_type_cubit.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
 import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
+import 'package:sports_injury_app/features/home/data/repos/home_repo_impl.dart';
+import 'package:sports_injury_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/mechanism/mechanism_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/physical_examination/physical_examination_repo_impl.dart';
@@ -60,7 +62,10 @@ class AppRouter {
         );
       case Routes.homeScreen:
         return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => HomeCubit(locator.get<HomeRepoImpl>()),
+            child: const HomeScreen(),
+          ),
         );
       case Routes.injuryRegionScreen:
         final Map<String, dynamic>? args =
