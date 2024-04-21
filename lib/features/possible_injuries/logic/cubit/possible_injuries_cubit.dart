@@ -16,8 +16,8 @@ class PossibleInjuriesCubit extends Cubit<PossibleInjuriesState> {
     emit(PossibleInjuriesLoadingState());
     var result =
         await injuriesRepo.fetchInjuriesToTheRegion(regionName: regionName);
-    result.fold((faliure) {
-      emit(PossibleInjuriesError(error: faliure.message));
+    result.fold((Failure) {
+      emit(PossibleInjuriesError(error: Failure.message));
     }, (injuries) {
       emit(PossibleInjuriesSuccsses(injuries: injuries));
     });

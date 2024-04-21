@@ -12,7 +12,7 @@ class InjuriesRepoImpl implements InjuriesRepo {
       MyFirebaseFireStoreService();
 
   @override
-  Future<Either<Faliure, List<InjuriesModel>>> fetchInjuriesToTheRegion(
+  Future<Either<Failure, List<InjuriesModel>>> fetchInjuriesToTheRegion(
       {required String regionName}) async {
     injuries = [];
     QuerySnapshot<Map<String, dynamic>> injuriesSnapshot =

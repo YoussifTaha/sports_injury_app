@@ -18,8 +18,8 @@ class InjuryTestsCubit extends Cubit<InjuryTestsState> {
     emit(InjuriesTestsLoadingState());
     var result = await testsRepo.fetchInjuriesTests(
         regionName: regionName, injuryName: injuryName);
-    result.fold((faliure) {
-      emit(InjuriesTestsError(error: faliure.message));
+    result.fold((Failure) {
+      emit(InjuriesTestsError(error: Failure.message));
     }, (tests) {
       emit(InjuriesTestsSuccsses(tests: tests));
     });

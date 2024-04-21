@@ -14,7 +14,7 @@ class MechanismRepoImpl implements MechanismRepo {
       MyFirebaseFireStoreService();
 
   @override
-  Future<Either<Faliure, List<DetailsModel>>> fetchInjuriesMechanisms(
+  Future<Either<Failure, List<DetailsModel>>> fetchInjuriesMechanisms(
       {required String regionName, required String injuryName}) async {
     mechanism = [];
     QuerySnapshot<Map<String, dynamic>> mechanismSnapshot =

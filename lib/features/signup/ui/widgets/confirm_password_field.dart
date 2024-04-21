@@ -1,7 +1,6 @@
 import 'package:sports_injury_app/core/theming/colors.dart';
+import 'package:sports_injury_app/core/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/widgets/widgets.dart';
 
 class ConfirmPasswordField extends StatefulWidget {
   final TextEditingController passwordController;

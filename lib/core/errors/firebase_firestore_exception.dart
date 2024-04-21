@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sports_injury_app/core/errors/faliure.dart';
 
-class FirebaseFireStoreException extends Faliure {
+class FirebaseFireStoreException extends Failure {
   FirebaseFireStoreException(super.message);
 
   factory FirebaseFireStoreException.fromFirebaseFirestoreException(

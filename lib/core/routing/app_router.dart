@@ -17,6 +17,8 @@ import 'package:sports_injury_app/features/onBoarding/ui/screens/onboarding_scre
 import 'package:flutter/material.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
 import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possible_injuries_cubit.dart';
+import 'package:sports_injury_app/features/signup/data/repos/signup_repo_impl.dart';
+import 'package:sports_injury_app/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:sports_injury_app/features/signup/ui/screens/signup_screen.dart';
 
 import '../../features/injury_details/logic/mechanism_cubit/injury_mechanism_cubit.dart';
@@ -36,7 +38,10 @@ class AppRouter {
         );
       case Routes.signupScreen:
         return MaterialPageRoute(
-          builder: (_) => const SignupScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => SignupCubit((locator.get<SignUpRepoImpl>())),
+            child: const SignupScreen(),
+          ),
         );
       case Routes.accountTypeScreen:
         return MaterialPageRoute(
