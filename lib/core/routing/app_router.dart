@@ -16,11 +16,16 @@ import 'package:sports_injury_app/features/injury_details/logic/physical_examina
 import 'package:sports_injury_app/features/injury_details/logic/tests_cubit/tests_cubit_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/logic/treatment_cubit/treatment_cubit_cubit.dart';
 import 'package:sports_injury_app/features/injury_details/ui/screens/injury_details.dart';
+import 'package:sports_injury_app/features/login/data/repos/login_repo_impl.dart';
+import 'package:sports_injury_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:sports_injury_app/features/login/ui/screens/login_screen.dart';
 import 'package:sports_injury_app/features/onBoarding/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
 import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possible_injuries_cubit.dart';
+import 'package:sports_injury_app/features/post_login/data/repo/post_login_repo_impl.dart';
+import 'package:sports_injury_app/features/post_login/logic/cubit/post_login_cubit.dart';
+import 'package:sports_injury_app/features/post_login/ui/screens/post_login.dart';
 import 'package:sports_injury_app/features/signup/data/repos/signup_repo_impl.dart';
 import 'package:sports_injury_app/features/signup/logic/cubit/signup_cubit.dart';
 import 'package:sports_injury_app/features/signup/ui/screens/signup_screen.dart';
@@ -38,7 +43,10 @@ class AppRouter {
         );
       case Routes.loginScreen:
         return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit(locator.get<LoginRepoImpl>()),
+            child: LoginScreen(),
+          ),
         );
       case Routes.signupScreen:
         return MaterialPageRoute(
@@ -118,6 +126,14 @@ class AppRouter {
       case Routes.bag:
         return MaterialPageRoute(
           builder: (_) => const BagScreen(),
+        );
+      case Routes.postLoginScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                PostLoginCubit(locator.get<PostLoginRepoImpl>()),
+            child: PostLogiScreen(),
+          ),
         );
       default:
         return MaterialPageRoute(

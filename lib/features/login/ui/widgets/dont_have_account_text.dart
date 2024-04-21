@@ -1,10 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:sports_injury_app/core/Helpers/extensions.dart';
+import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/routing/routes.dart';
 
 class AlreadyHaveAccountText extends StatelessWidget {
   const AlreadyHaveAccountText({super.key});
