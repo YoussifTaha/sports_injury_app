@@ -22,8 +22,8 @@ class InjuryPhysicalExaminationCubit
     var result = await physicalExaminationRepo.fetchInjuriesPhysicalExamination(
         regionName: regionName,
         physicalExaminationName: physicalExaminationName);
-    result.fold((faliure) {
-      emit(InjuriesPhysicalExaminationError(error: faliure.message));
+    result.fold((Failure) {
+      emit(InjuriesPhysicalExaminationError(error: Failure.message));
     }, (physicalExamination) {
       emit(InjuriesPhysicalExaminationSuccsses(
           physicalExamination: physicalExamination));

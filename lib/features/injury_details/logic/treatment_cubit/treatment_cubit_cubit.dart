@@ -18,8 +18,8 @@ class InjuryTreatmentCubit extends Cubit<InjuryTreatmentState> {
     emit(InjuriesTreatmentLoadingState());
     var result = await treatmentRepo.fetchInjuriesTreatment(
         regionName: regionName, injuryName: injuryName);
-    result.fold((faliure) {
-      emit(InjuriesTreatmentError(error: faliure.message));
+    result.fold((Failure) {
+      emit(InjuriesTreatmentError(error: Failure.message));
     }, (treatment) {
       emit(InjuriesTreatmentSuccsses(treatment: treatment));
     });

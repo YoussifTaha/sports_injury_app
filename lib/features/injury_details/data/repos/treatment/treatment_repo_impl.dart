@@ -12,7 +12,7 @@ class TreatmentRepoImpl implements TreatmentRepo {
       MyFirebaseFireStoreService();
 
   @override
-  Future<Either<Faliure, List<DetailsModel>>> fetchInjuriesTreatment(
+  Future<Either<Failure, List<DetailsModel>>> fetchInjuriesTreatment(
       {required String regionName, required String injuryName}) async {
     treatment = [];
     QuerySnapshot<Map<String, dynamic>> treatmentSnapshot =

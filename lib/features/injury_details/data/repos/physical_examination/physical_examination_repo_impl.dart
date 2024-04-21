@@ -12,7 +12,7 @@ class PhysicalExaminationRepoImpl implements PhysicalExaminationRepo {
       MyFirebaseFireStoreService();
 
   @override
-  Future<Either<Faliure, List<DetailsModel>>> fetchInjuriesPhysicalExamination(
+  Future<Either<Failure, List<DetailsModel>>> fetchInjuriesPhysicalExamination(
       {required String regionName,
       required String physicalExaminationName}) async {
     physicalExamination = [];

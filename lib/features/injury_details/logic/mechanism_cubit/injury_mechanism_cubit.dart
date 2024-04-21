@@ -17,8 +17,8 @@ class InjuryMechanismCubit extends Cubit<InjuryMechanismState> {
     emit(InjuriesMechanismsLoadingState());
     var result = await mechanismRepo.fetchInjuriesMechanisms(
         regionName: regionName, injuryName: injuryName);
-    result.fold((faliure) {
-      emit(InjuriesMechanismsError(error: faliure.message));
+    result.fold((Failure) {
+      emit(InjuriesMechanismsError(error: Failure.message));
     }, (mechanisms) {
       emit(InjuriesMechanismsSuccsses(mechanisms: mechanisms));
     });

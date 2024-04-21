@@ -12,7 +12,7 @@ class TestsRepoImpl implements TestsRepo {
       MyFirebaseFireStoreService();
 
   @override
-  Future<Either<Faliure, List<DetailsModel>>> fetchInjuriesTests(
+  Future<Either<Failure, List<DetailsModel>>> fetchInjuriesTests(
       {required String regionName, required String injuryName}) async {
     tests = [];
     QuerySnapshot<Map<String, dynamic>> testsSnapshot =
