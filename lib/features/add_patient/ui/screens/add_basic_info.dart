@@ -169,6 +169,14 @@ class AddBasicInfoPage extends StatelessWidget {
                 verticalSpace(10),
                 RadiologyImages(),
                 verticalSpace(30),
+                Text(
+                  'You can add the exsisting treatment program introduced by our app to the patient profile below.The program will be based on the suspected injury.',
+                  style: getRegularStyle(
+                          color: Colors.black, fontSize: 12.sp, textHeight: 1.2)
+                      .copyWith(letterSpacing: 0.5.sp),
+                  textAlign: TextAlign.center,
+                ),
+                verticalSpace(20),
                 BlocConsumer<AddPatientCubit, AddPatientState>(
                   listener: (context, state) {
                     if (state is AddPatientSuccsses) {

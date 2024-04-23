@@ -40,8 +40,16 @@ class InjuryRegionScreen extends StatelessWidget {
                 child: Image.asset('assets/images/$injuryRegion.png'),
               ),
               verticalSpace(30),
-              InjuryInfoCategoryRow(
-                title: 'Anatomy',
+              InkWell(
+                onTap: () {
+                  context.pushNamed(
+                    Routes.anatomy,
+                    arguments: {'injuryRegion': injuryRegion},
+                  );
+                },
+                child: InjuryInfoCategoryRow(
+                  title: 'Anatomy',
+                ),
               ),
               verticalSpace(20),
               InkWell(

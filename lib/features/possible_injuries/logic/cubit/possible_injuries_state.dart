@@ -18,3 +18,15 @@ final class PossibleInjuriesError extends PossibleInjuriesState {
 
   PossibleInjuriesError({required this.error});
 }
+
+final class FetchAnatomySuccsses extends PossibleInjuriesState {
+  final List<DetailsModel> anatomy;
+
+  FetchAnatomySuccsses({required this.anatomy});
+}
+
+final class FetchAnatomyError extends PossibleInjuriesState {
+  final String error;
+
+  FetchAnatomyError({required this.error});
+}

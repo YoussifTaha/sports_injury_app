@@ -15,4 +15,6 @@ class Routes {
   static const String patientIdScreen = '/patientIdScreen';
   static const String addBasicInfoScreen = '/addBasicInfoScreen';
   static const String reassessment = '/reassessment';
+  static const String viewPatients = '/viewPatients';
+  static const String anatomy = '/anatomy';
 }
