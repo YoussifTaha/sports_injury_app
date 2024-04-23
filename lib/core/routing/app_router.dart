@@ -7,6 +7,7 @@ import 'package:sports_injury_app/features/account_type/ui/screens/account_type_
 import 'package:sports_injury_app/features/add_patient/data/repos/add_patient_repo_impl.dart';
 import 'package:sports_injury_app/features/add_patient/logic/cubit/add_patient_cubit.dart';
 import 'package:sports_injury_app/features/add_patient/ui/screens/add_new_patient.dart';
+import 'package:sports_injury_app/features/add_patient/ui/screens/reassesment.dart';
 import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
 import 'package:sports_injury_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:sports_injury_app/features/home/logic/cubit/home_cubit.dart';
@@ -191,6 +192,18 @@ class AppRouter {
             create: (context) =>
                 AddPatientCubit(locator.get<AddPatientRepoImpl>()),
             child: AddNewPatient(),
+          ),
+        );
+      case Routes.reassessment:
+        final Map<String, dynamic>? args =
+            settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                AddPatientCubit(locator.get<AddPatientRepoImpl>()),
+            child: Reassessment(
+              patientId: args?['patientId'] ?? '',
+            ),
           ),
         );
       default:

@@ -1,4 +1,6 @@
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
+import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/core/widgets/widgets.dart';
@@ -98,32 +100,37 @@ class PatientCard extends StatelessWidget {
                   ),
                 ],
               ),
-              // verticalSpace(15),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: Column(
-              //         children: [
-              //           button(
-              //               context: context,
-              //               function: () {},
-              //               text: 'Add Injury Program'),
-              //         ],
-              //       ),
-              //     ),
-              // horizontalSpace(10),
-              // Expanded(
-              //   child: Column(
-              //     children: [
-              //       outlinedButton(
-              //           height: 52.h,
-              //           function: () {},
-              //           text: 'Add Exercise'),
-              //     ],
-              //   ),
-              // ),
-              //   ],
-              // ),
+              verticalSpace(15),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        button(
+                            context: context,
+                            function: () {
+                              context
+                                  .pushNamed(Routes.reassessment, arguments: {
+                                'patientId': patient.patientId,
+                              });
+                            },
+                            text: 'Re Assess'),
+                      ],
+                    ),
+                  ),
+                  // horizontalSpace(10),
+                  // Expanded(
+                  //   child: Column(
+                  //     children: [
+                  //       outlinedButton(
+                  //           height: 52.h,
+                  //           function: () {},
+                  //           text: 'Add Exercise'),
+                  //     ],
+                  //   ),
+                  // ),
+                ],
+              ),
             ],
           ),
         ),

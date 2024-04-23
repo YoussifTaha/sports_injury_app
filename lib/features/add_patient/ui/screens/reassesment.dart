@@ -14,12 +14,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_injury_app/features/add_patient/ui/widgets/injury_region_choice.dart';
 import 'package:sports_injury_app/features/add_patient/ui/widgets/radiology_images.dart';
 
-class AddBasicInfoPage extends StatelessWidget {
-  final TextEditingController iDController;
-  final PageController pageController;
-  const AddBasicInfoPage(
-      {Key? key, required this.pageController, required this.iDController})
-      : super(key: key);
+class Reassessment extends StatelessWidget {
+  final int patientId;
+  const Reassessment({
+    Key? key,
+    required this.patientId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,19 +31,14 @@ class AddBasicInfoPage extends StatelessWidget {
     TextEditingController genderController = TextEditingController();
     TextEditingController positionController = TextEditingController();
 
-    // String capitalizeEachWord(String input) {
-    //   List<String> words = input.split(' ');
-    //   words = words.map((word) {
-    //     if (word.isNotEmpty) {
-    //       return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    //     } else {
-    //       return word;
-    //     }
-    //   }).toList();
-    //   return words.join(' ');
-    // }
-
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Reassessment',
+          style: getBoldStyle(color: Colors.black, fontSize: 20.sp),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formKey,
@@ -210,13 +205,13 @@ class AddBasicInfoPage extends StatelessWidget {
                             } else {
                               AddPatientCubit.get(context)
                                   .addAllTreatmentProgramToUserExercises(
-                                      patientId: int.parse(iDController.text));
+                                      patientId: patientId);
                               AddPatientCubit.get(context)
                                   .uploadRadiologyImages(
-                                patientId: int.parse(iDController.text),
+                                patientId: patientId,
                               );
                               AddPatientCubit.get(context).fetchPatientUser(
-                                  patientId: int.parse(iDController.text),
+                                  patientId: patientId,
                                   patientInfo: patientInfo);
                             }
                           }
