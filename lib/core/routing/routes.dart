@@ -9,4 +9,9 @@ class Routes {
   static const String injuryDetails = '/injuryDetails';
   static const String bag = '/bag';
   static const String postLoginScreen = '/postLoginScreen';
+  static const String patientViewScreen = '/patientViewScreen';
+  static const String loadingScreen = '/loadingScreen';
+  static const String patientViewAddInfo = '/patientViewAddInfo';
+  static const String patientIdScreen = '/patientIdScreen';
+  static const String addBasicInfoScreen = '/addBasicInfoScreen';
 }

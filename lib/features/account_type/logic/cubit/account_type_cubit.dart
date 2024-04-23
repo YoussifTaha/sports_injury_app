@@ -66,7 +66,7 @@ class AccountTypeCubit extends Cubit<AccountTypeState> {
       context.pushNamedAndRemoveUntill(Routes.homeScreen,
           predicate: (Route<dynamic> route) => false);
     } else {
-      context.pushNamedAndRemoveUntill(Routes.homeScreen,
+      context.pushNamedAndRemoveUntill(Routes.patientIdScreen,
           predicate: (Route<dynamic> route) => false);
     }
   }

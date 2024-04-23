@@ -21,16 +21,18 @@ class PatientsList extends StatelessWidget {
         } else if (state is GetMyPatientsSuccsses) {
           if (state.patients.length != 0) {
             return ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return PatientCard(
-                    patient: state.patients[index],
-                  );
-                },
-                separatorBuilder: (context, index) => horizontalSpace(10),
-                itemCount: state.patients.length);
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(horizontal: 0),
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) {
+                return PatientCard(
+                  patient: state.patients[index],
+                );
+              },
+              separatorBuilder: (context, index) => verticalSpace(10),
+              itemCount: state.patients.length > 3 ? 3 : state.patients.length,
+            );
           } else
             return SizedBox(
               width: double.infinity,

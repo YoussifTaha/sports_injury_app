@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
+import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import '../../../../core/Helpers/spacing.dart';
 import '../../../../core/theming/styles_manager.dart';
@@ -55,7 +57,9 @@ class AddPatientCard extends StatelessWidget {
                         fontSize: 12.sp,
                         width: 165.h,
                         context: context,
-                        function: () {},
+                        function: () {
+                          context.pushNamed(Routes.addBasicInfoScreen);
+                        },
                         text: 'Add New Patient'),
                   ],
                 )),

@@ -21,6 +21,7 @@ class TestsRepoImpl implements TestsRepo {
     try {
       for (var element in testsSnapshot.docs) {
         tests.add(DetailsModel.fromJson(element.data()));
+        print('test: ${tests.first.description}');
       }
       return right(tests);
     } on Exception catch (e) {

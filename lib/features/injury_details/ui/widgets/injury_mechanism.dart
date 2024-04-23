@@ -47,6 +47,14 @@ class _InjuryMechanismState extends State<InjuryMechanism>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        widget.mechanismModel.name == null || widget.mechanismModel.name == ''
+            ? SizedBox.shrink()
+            : Text(
+                widget.mechanismModel.name ?? '',
+                style: getSemiBoldStyle(
+                    color: Colors.black, fontSize: 16.sp, textHeight: 1.2),
+              ),
+        verticalSpace(5),
         Text(
           widget.mechanismModel.description ?? '',
           style: getRegularStyle(

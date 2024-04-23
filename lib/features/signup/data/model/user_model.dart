@@ -11,9 +11,9 @@ class UserModel extends Equatable {
   final String? age;
   final String? gender;
   final String? address;
-  final String? occupation;
+  final String? position;
   final String? injuryRegion;
-  final String? weekNumber;
+  final String? suspectedInjury;
   final String? myDoctorUid;
   final int? patientId;
   final bool? isPersonalInfoAdded;
@@ -29,9 +29,9 @@ class UserModel extends Equatable {
       this.age,
       this.gender,
       this.address,
-      this.occupation,
+      this.position,
       this.injuryRegion,
-      this.weekNumber,
+      this.suspectedInjury,
       this.myDoctorUid,
       this.patientId,
       this.isPersonalInfoAdded});
@@ -49,9 +49,9 @@ class UserModel extends Equatable {
         age: json['age'] as String?,
         gender: json['gender'] as String?,
         address: json['address'] as String?,
-        occupation: json['occupation'] as String?,
+        position: json['position'] as String?,
         injuryRegion: json['injuryRegion'] as String?,
-        weekNumber: json['weekNumber'] as String?,
+        suspectedInjury: json['suspectedInjury'] as String?,
         myDoctorUid: json['myDoctorUid'] as String?,
       );
 
@@ -68,9 +68,9 @@ class UserModel extends Equatable {
         'age': age,
         'gender': gender,
         'address': address,
-        'occupation': occupation,
+        'position': position,
         'injuryRegion': injuryRegion,
-        'weekNumber': weekNumber,
+        'suspectedInjury': suspectedInjury,
         'myDoctorUid': myDoctorUid,
       };
 
@@ -89,9 +89,9 @@ class UserModel extends Equatable {
       age,
       gender,
       address,
-      occupation,
+      position,
       injuryRegion,
-      weekNumber,
+      suspectedInjury,
       myDoctorUid,
     ];
   }

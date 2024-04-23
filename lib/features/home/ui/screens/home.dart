@@ -142,10 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       verticalSpace(15),
-                      SizedBox(
-                        height: 380,
-                        child: PatientsList(),
-                      ),
+                      PatientsList(),
+                      verticalSpace(15),
                       myHorizontalDivider(),
                       verticalSpace(25),
                       CommonInjuriesRegions(),

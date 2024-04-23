@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sports_injury_app/features/injury_details/data/models/details_model.dart';
@@ -76,6 +77,16 @@ class _InjuryTestsState extends State<InjuryTests>
                   );
                 },
                 itemCount: goals?.length),
+        verticalSpace(10),
+        widget.testsModel.image == '' || widget.testsModel.image == null
+            ? SizedBox.shrink()
+            : ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: SizedBox(
+                  height: 200.h,
+                  child: CachedNetworkImage(
+                      imageUrl: widget.testsModel.image ?? ''),
+                )),
         verticalSpace(10),
         widget.testsModel.videoUrl == '' || widget.testsModel.videoUrl == null
             ? SizedBox.shrink()

@@ -19,6 +19,14 @@ class InjuryPhysicalExamination extends StatefulWidget {
 
 class _InjuryPhysicalExaminationState extends State<InjuryPhysicalExamination>
     with TickerProviderStateMixin {
+  late List<dynamic>? goals;
+
+  @override
+  void initState() {
+    super.initState();
+    goals = widget.physicalExaminationModel.goals;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -54,6 +62,26 @@ class _InjuryPhysicalExaminationState extends State<InjuryPhysicalExamination>
           style: getRegularStyle(
               color: ColorManger.regularGrey, fontSize: 14.sp, textHeight: 1.2),
         ),
+        verticalSpace(5),
+        widget.physicalExaminationModel.goals == null
+            ? SizedBox.shrink()
+            : ListView.separated(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Text(
+                    goals?[index],
+                    style: getRegularStyle(
+                        color: ColorManger.regularGrey,
+                        fontSize: 14.sp,
+                        textHeight: 1.2),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return verticalSpace(5);
+                },
+                itemCount: goals?.length ?? 0,
+              ),
       ],
     );
   }

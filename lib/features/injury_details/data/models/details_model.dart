@@ -5,12 +5,14 @@ class DetailsModel extends Equatable {
   final List<dynamic>? goals;
   final String? videoUrl;
   final String? description;
+  final String? image;
 
   const DetailsModel({
     this.name,
     this.goals,
     this.videoUrl,
     this.description,
+    this.image,
   });
 
   factory DetailsModel.fromJson(Map<String, dynamic> json) => DetailsModel(
@@ -18,6 +20,7 @@ class DetailsModel extends Equatable {
         goals: json['goals'] as List<dynamic>?,
         videoUrl: json['videoUrl'] as String?,
         description: json['description'] as String?,
+        image: json['image'] as String?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -25,6 +28,7 @@ class DetailsModel extends Equatable {
         'goals': goals,
         'videoUrl': videoUrl,
         'description': description,
+        'image': image,
       };
 
   @override
@@ -34,6 +38,7 @@ class DetailsModel extends Equatable {
       goals,
       videoUrl,
       description,
+      image,
     ];
   }
 }

@@ -97,4 +97,13 @@ class MyFirebaseFireStoreService {
         .collection('Exercises')
         .get();
   }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getSuspectedInjuriesCollection(
+      {required String injuryRegion}) async {
+    return await _firestore
+        .collection('regions')
+        .doc(injuryRegion)
+        .collection('injuries')
+        .get();
+  }
 }

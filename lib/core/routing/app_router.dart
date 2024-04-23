@@ -4,6 +4,9 @@ import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/features/account_type/data/repos/account_type_repo_impl.dart';
 import 'package:sports_injury_app/features/account_type/logic/cubit/account_type_cubit.dart';
 import 'package:sports_injury_app/features/account_type/ui/screens/account_type_screen.dart';
+import 'package:sports_injury_app/features/add_patient/data/repos/add_patient_repo_impl.dart';
+import 'package:sports_injury_app/features/add_patient/logic/cubit/add_patient_cubit.dart';
+import 'package:sports_injury_app/features/add_patient/ui/screens/add_new_patient.dart';
 import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
 import 'package:sports_injury_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:sports_injury_app/features/home/logic/cubit/home_cubit.dart';
@@ -21,6 +24,16 @@ import 'package:sports_injury_app/features/login/logic/cubit/login_cubit.dart';
 import 'package:sports_injury_app/features/login/ui/screens/login_screen.dart';
 import 'package:sports_injury_app/features/onBoarding/ui/screens/onboarding_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sports_injury_app/features/patient_id/ui/screens/patient_id_screen.dart';
+import 'package:sports_injury_app/features/patient_view/data/patient_view_repo_impl.dart';
+import 'package:sports_injury_app/features/patient_view/logic/cubit/patient_view_cubit.dart';
+import 'package:sports_injury_app/features/patient_view/ui/screens/patient_view.dart';
+import 'package:sports_injury_app/features/patient_view_add_info/data/repo/patient_view_add_info_repo_impl.dart';
+import 'package:sports_injury_app/features/patient_view_add_info/logic/cubit/patient_view_add_info_cubit.dart';
+import 'package:sports_injury_app/features/patient_view_add_info/ui/screens/patient_view_add_info.dart';
+import 'package:sports_injury_app/features/patient_view_loading-screen/data/repo/loading_screen_repo_impl.dart';
+import 'package:sports_injury_app/features/patient_view_loading-screen/logic/cubit/loading_screen_cubit.dart';
+import 'package:sports_injury_app/features/patient_view_loading-screen/ui/screen/loading_screen.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
 import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possible_injuries_cubit.dart';
 import 'package:sports_injury_app/features/post_login/data/repo/post_login_repo_impl.dart';
@@ -133,6 +146,51 @@ class AppRouter {
             create: (context) =>
                 PostLoginCubit(locator.get<PostLoginRepoImpl>()),
             child: PostLogiScreen(),
+          ),
+        );
+      case Routes.loadingScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                LoadingScreenCubit(locator.get<LoadingScreenRepoImpl>()),
+            child: LoadingScreen(),
+          ),
+        );
+      case Routes.patientViewAddInfo:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => PatientViewAddInfoCubit(
+                locator.get<PatientViewAddInfoRepoImpl>()),
+            child: PatientViewAddInfo(),
+          ),
+        );
+      case Routes.patientIdScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                LoadingScreenCubit(locator.get<LoadingScreenRepoImpl>()),
+            child: PatientIdScreen(),
+          ),
+        );
+      case Routes.patientViewScreen:
+        return MaterialPageRoute(
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<PatientViewCubit>(
+                create: (context) =>
+                    PatientViewCubit(locator.get<PatientsViewInfoRepoImpl>()),
+                child: PatientView(),
+              ),
+            ],
+            child: PatientView(),
+          ),
+        );
+      case Routes.addBasicInfoScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                AddPatientCubit(locator.get<AddPatientRepoImpl>()),
+            child: AddNewPatient(),
           ),
         );
       default:

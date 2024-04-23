@@ -23,9 +23,9 @@ class SportsInjuryApp extends StatelessWidget {
         firstScreen = Routes.homeScreen;
       } else {
         if (isDoctorAdded == null) {
-          firstScreen = Routes.homeScreen;
+          firstScreen = Routes.patientIdScreen;
         } else
-          firstScreen = Routes.homeScreen;
+          firstScreen = Routes.loadingScreen;
       }
     } else if (isSignedUp != null && isAccountCreated == null) {
       firstScreen = Routes.accountTypeScreen;

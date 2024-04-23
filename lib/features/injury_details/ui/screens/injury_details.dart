@@ -95,7 +95,7 @@ class _InjuryMechanismState extends State<InjuryDetails> {
               myHorizontalDivider(),
               verticalSpace(20),
               Text(
-                'Special Tests',
+                'Tests',
                 style: getBoldStyle(
                     color: ColorManger.darkPrimary, fontSize: 18.sp),
               ),
