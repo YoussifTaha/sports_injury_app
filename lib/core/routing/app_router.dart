@@ -12,6 +12,7 @@ import 'package:sports_injury_app/features/bag/ui/screens/bag.dart';
 import 'package:sports_injury_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:sports_injury_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:sports_injury_app/features/home/ui/screens/home.dart';
+import 'package:sports_injury_app/features/home/ui/screens/view_patients_screen.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/mechanism/mechanism_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/physical_examination/physical_examination_repo_impl.dart';
 import 'package:sports_injury_app/features/injury_details/data/repos/tests/tests_repo_impl.dart';
@@ -37,6 +38,7 @@ import 'package:sports_injury_app/features/patient_view_loading-screen/logic/cub
 import 'package:sports_injury_app/features/patient_view_loading-screen/ui/screen/loading_screen.dart';
 import 'package:sports_injury_app/features/possible_injuries/data/repo/injury_repo_impl.dart';
 import 'package:sports_injury_app/features/possible_injuries/logic/cubit/possible_injuries_cubit.dart';
+import 'package:sports_injury_app/features/possible_injuries/ui/screens/anatomy_screen.dart';
 import 'package:sports_injury_app/features/post_login/data/repo/post_login_repo_impl.dart';
 import 'package:sports_injury_app/features/post_login/logic/cubit/post_login_cubit.dart';
 import 'package:sports_injury_app/features/post_login/ui/screens/post_login.dart';
@@ -106,6 +108,16 @@ class AppRouter {
                 PossibleInjuriesCubit(locator.get<InjuriesRepoImpl>()),
             child: PossibleInjuriescreen(
                 injuryRegion: args?['injuryRegion'] ?? ''),
+          ),
+        );
+      case Routes.anatomy:
+        final Map<String, dynamic>? args =
+            settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                PossibleInjuriesCubit(locator.get<InjuriesRepoImpl>()),
+            child: Anatomyscreen(injuryRegion: args?['injuryRegion'] ?? ''),
           ),
         );
       case Routes.injuryDetails:
@@ -204,6 +216,13 @@ class AppRouter {
             child: Reassessment(
               patientId: args?['patientId'] ?? '',
             ),
+          ),
+        );
+      case Routes.viewPatients:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => HomeCubit(locator.get<HomeRepoImpl>()),
+            child: PatientsScreen(),
           ),
         );
       default:

@@ -12,6 +12,15 @@ class MyFirebaseFireStoreService {
         .get();
   }
 
+  Future<QuerySnapshot<Map<String, dynamic>>> getAnatomyCollection(
+      {required String regionName}) async {
+    return await FirebaseFirestore.instance
+        .collection('regions')
+        .doc(regionName)
+        .collection('Anatomy')
+        .get();
+  }
+
   Future<QuerySnapshot<Map<String, dynamic>>> getInjuriesMechanismsCollection(
       {required String regionName, required String injuryName}) async {
     return await FirebaseFirestore.instance

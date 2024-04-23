@@ -131,13 +131,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: ColorManger.darkPrimary,
                                 fontSize: 18.sp),
                           ),
-                          Text(
-                            'View All',
-                            style: getRegularStyle(
-                                    color: ColorManger.primary,
-                                    fontSize: 12.sp,
-                                    textHeight: 1.2.h)
-                                .copyWith(decoration: TextDecoration.underline),
+                          TextButton(
+                            child: Text(
+                              'View All',
+                              style: getRegularStyle(
+                                      color: ColorManger.primary,
+                                      fontSize: 12.sp,
+                                      textHeight: 1.2.h)
+                                  .copyWith(
+                                      decoration: TextDecoration.underline),
+                            ),
+                            onPressed: () {
+                              context.pushNamed(Routes.viewPatients);
+                            },
                           ),
                         ],
                       ),
