@@ -47,7 +47,6 @@ class _PatientViewState extends State<PatientView> {
                 ),
                 verticalSpace(20),
                 PatientViewBasicInfo(),
-                verticalSpace(20),
               ],
             ),
           )),

@@ -201,6 +201,7 @@ class AddBasicInfoPage extends StatelessWidget {
                               AddPatientCubit.get(context).suspectedInjury;
 
                           UserInfoModel patientInfo = UserInfoModel(
+                              fullName: fullNameController.text,
                               chiefComplain: chiefComplainController.text,
                               sessionDate: injuryDateController.text,
                               age: ageController.text,

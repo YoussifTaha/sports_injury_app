@@ -1,7 +1,10 @@
+import 'package:sports_injury_app/core/Helpers/extensions.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
+import 'package:sports_injury_app/core/routing/routes.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
 import 'package:sports_injury_app/features/patient_view/logic/cubit/patient_view_cubit.dart';
+import 'package:sports_injury_app/features/patient_view/ui/widgets/patient_info_choice.dart';
 import 'package:sports_injury_app/features/signup/data/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -86,6 +89,29 @@ class _PatientViewBasicInfoState extends State<PatientViewBasicInfo> {
                     color: ColorManger.regularGrey, fontSize: 15.sp),
               ),
               verticalSpace(30),
+              InkWell(
+                onTap: () {
+                  context.pushNamed(Routes.patientViewRadiology,
+                      arguments: {'patientId': state.patient.patientId});
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: PatientInfoChoice(
+                      choice: 'Patient Radilogy', image: 'Tests'),
+                ),
+              ),
+              verticalSpace(20),
+              InkWell(
+                onTap: () {
+                  context.pushNamed(Routes.patientViewTreatment,
+                      arguments: {'patientId': state.patient.patientId});
+                },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: PatientInfoChoice(
+                      choice: 'Patient Treatment Program', image: 'capsule'),
+                ),
+              ),
             ],
           ),
         );

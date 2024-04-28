@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 
 class UserInfoModel extends Equatable {
   final String chiefComplain;
+  final String fullName;
   final String age;
   final String gender;
   final String position;
@@ -12,6 +13,7 @@ class UserInfoModel extends Equatable {
 
   const UserInfoModel({
     required this.chiefComplain,
+    required this.fullName,
     required this.age,
     required this.gender,
     required this.position,
@@ -23,6 +25,7 @@ class UserInfoModel extends Equatable {
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
         chiefComplain: json['chiefComplain'],
+        fullName: json['fullName'],
         age: json['age'],
         gender: json['gender'],
         position: json['position'],
@@ -34,6 +37,7 @@ class UserInfoModel extends Equatable {
 
   Map<String, dynamic> toJson() => {
         'chiefComplain': chiefComplain,
+        'fullName': fullName,
         'age': age,
         'gender': gender,
         'position': position,
@@ -47,6 +51,7 @@ class UserInfoModel extends Equatable {
   List<Object?> get props {
     return [
       chiefComplain,
+      fullName,
       age,
       gender,
       position,

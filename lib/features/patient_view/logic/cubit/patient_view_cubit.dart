@@ -1,3 +1,4 @@
+import 'package:sports_injury_app/features/injury_details/data/models/details_model.dart';
 import 'package:sports_injury_app/features/patient_view/data/patient_view_repo.dart';
 import 'package:sports_injury_app/features/signup/data/model/user_model.dart';
 import 'package:equatable/equatable.dart';
@@ -19,6 +20,28 @@ class PatientViewCubit extends Cubit<PatientViewState> {
       emit(GetPatientBasicInfoError(error: faliure.message));
     }, (patient) {
       emit(GetPatientBasicInfoSuccsses(patient: patient));
+    });
+  }
+
+  Future<void> fetchRadiology({required int patientId}) async {
+    emit(GetPatientRadiologyLoadingState());
+    var result =
+        await patientsViewInfoRepo.fetchRadiology(patientId: patientId);
+    result.fold((faliure) {
+      emit(GetPatientRadiologyError(error: faliure.message));
+    }, (radiology) {
+      emit(GetPatientRadiologySuccsses(radiology: radiology));
+    });
+  }
+
+  Future<void> fetchTreatment({required int patientId}) async {
+    emit(GetPatientRadiologyLoadingState());
+    var result =
+        await patientsViewInfoRepo.fetchTreatment(patientId: patientId);
+    result.fold((faliure) {
+      emit(GetPatientTreatmentError(error: faliure.message));
+    }, (treatment) {
+      emit(GetPatientTreatmentSuccsses(treatment: treatment));
     });
   }
 }

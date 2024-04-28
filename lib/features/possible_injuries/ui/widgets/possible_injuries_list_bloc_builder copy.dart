@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:full_screen_image/full_screen_image.dart';
 import 'package:sports_injury_app/core/Helpers/spacing.dart';
 import 'package:sports_injury_app/core/theming/colors.dart';
 import 'package:sports_injury_app/core/theming/styles_manager.dart';
@@ -40,13 +41,19 @@ class AnatomyListBlocBuilder extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           height: 150.h,
-                          child: CachedNetworkImage(
-                              placeholder: (context, url) {
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              },
-                              imageUrl: state.anatomy[index].image ?? ''),
+                          child: FullScreenWidget(
+                            disposeLevel: DisposeLevel.High,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: CachedNetworkImage(
+                                  placeholder: (context, url) {
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  },
+                                  imageUrl: state.anatomy[index].image ?? ''),
+                            ),
+                          ),
                         ),
                       ],
                     ),

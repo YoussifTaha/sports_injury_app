@@ -29,7 +29,9 @@ import 'package:flutter/material.dart';
 import 'package:sports_injury_app/features/patient_id/ui/screens/patient_id_screen.dart';
 import 'package:sports_injury_app/features/patient_view/data/patient_view_repo_impl.dart';
 import 'package:sports_injury_app/features/patient_view/logic/cubit/patient_view_cubit.dart';
+import 'package:sports_injury_app/features/patient_view/ui/screens/patient_radiology.dart';
 import 'package:sports_injury_app/features/patient_view/ui/screens/patient_view.dart';
+import 'package:sports_injury_app/features/patient_view/ui/screens/patient_view_treatment.dart';
 import 'package:sports_injury_app/features/patient_view_add_info/data/repo/patient_view_add_info_repo_impl.dart';
 import 'package:sports_injury_app/features/patient_view_add_info/logic/cubit/patient_view_add_info_cubit.dart';
 import 'package:sports_injury_app/features/patient_view_add_info/ui/screens/patient_view_add_info.dart';
@@ -118,6 +120,26 @@ class AppRouter {
             create: (context) =>
                 PossibleInjuriesCubit(locator.get<InjuriesRepoImpl>()),
             child: Anatomyscreen(injuryRegion: args?['injuryRegion'] ?? ''),
+          ),
+        );
+      case Routes.patientViewRadiology:
+        final Map<String, dynamic>? args =
+            settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                PatientViewCubit(locator.get<PatientsViewInfoRepoImpl>()),
+            child: PatientRadiology(patientId: args?['patientId'] ?? ''),
+          ),
+        );
+      case Routes.patientViewTreatment:
+        final Map<String, dynamic>? args =
+            settings.arguments as Map<String, dynamic>?;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                PatientViewCubit(locator.get<PatientsViewInfoRepoImpl>()),
+            child: PatientViewTreatment(patientId: args?['patientId'] ?? ''),
           ),
         );
       case Routes.injuryDetails:

@@ -17,4 +17,6 @@ class Routes {
   static const String reassessment = '/reassessment';
   static const String viewPatients = '/viewPatients';
   static const String anatomy = '/anatomy';
+  static const String patientViewRadiology = '/patientViewRadiology';
+  static const String patientViewTreatment = '/patientViewTreatment';
 }

@@ -22,3 +22,29 @@ final class GetPatientBasicInfoError extends PatientViewState {
 
   GetPatientBasicInfoError({required this.error});
 }
+
+final class GetPatientRadiologyLoadingState extends PatientViewState {}
+
+final class GetPatientRadiologySuccsses extends PatientViewState {
+  final List<String> radiology;
+
+  GetPatientRadiologySuccsses({required this.radiology});
+}
+
+final class GetPatientRadiologyError extends PatientViewState {
+  final String error;
+
+  GetPatientRadiologyError({required this.error});
+}
+
+final class GetPatientTreatmentSuccsses extends PatientViewState {
+  final List<DetailsModel> treatment;
+
+  GetPatientTreatmentSuccsses({required this.treatment});
+}
+
+final class GetPatientTreatmentError extends PatientViewState {
+  final String error;
+
+  GetPatientTreatmentError({required this.error});
+}

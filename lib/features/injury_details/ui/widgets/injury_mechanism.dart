@@ -64,11 +64,36 @@ class _InjuryMechanismState extends State<InjuryMechanism>
         widget.mechanismModel.videoUrl == '' ||
                 widget.mechanismModel.videoUrl == null
             ? SizedBox.shrink()
-            : ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: YoutubePlayer(
-                  controller: youtubePlayerController,
-                  showVideoProgressIndicator: true,
+            : AspectRatio(
+                aspectRatio: 16 / 9,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: YoutubePlayer(
+                    bottomActions: [
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => Scaffold(
+                                  body: SafeArea(
+                                    child: YoutubePlayerBuilder(
+                                        player: YoutubePlayer(
+                                          controller: youtubePlayerController,
+                                          showVideoProgressIndicator: true,
+                                        ),
+                                        builder: (context, player) {
+                                          return player;
+                                        }),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          icon: Icon(Icons.fullscreen))
+                    ],
+                    controller: youtubePlayerController,
+                    showVideoProgressIndicator: true,
+                  ),
                 ),
               ),
       ],
