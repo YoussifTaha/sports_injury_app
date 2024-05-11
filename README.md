@@ -50,3 +50,7 @@ Sports Injury is a mobile application designed to help physiotherapists manage t
 ### Injury Details
 <img src="Screenshot_20240511_032425.jpg" alt="alt text" width="200"/>
 
+## Installation
+- The Next is a link for apk file if you wish to run the app.
+
+https://drive.google.com/file/d/1IX1ACfg54VZpSQMnngz7-OH2A_8XZAML/view?usp=sharing
