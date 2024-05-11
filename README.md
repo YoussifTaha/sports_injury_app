@@ -13,9 +13,7 @@ Sports Injury is a mobile application designed to help physiotherapists manage t
 
 - Add New Patient : The Add New Patient Screen streamlines patient intake for physiotherapists. Beginning with patient ID entry and basic information input, it progresses to examination details, including injury region and suspected injury selection. Integration of patient radiology follows, enhancing diagnostic accuracy. A call-to-action prompts creation of a treatment program, facilitating seamless progression in patient care.
 
-- Patient View : The Patient View Screen offers a comprehensive view of the patient's healthcare journey. It includes a calendar for appointments, add their routines so the app will send them a reminder to do them correctly, their basic information and 4 sections chat with their doctor, the patient's history , the patient's examination and the patient's exercises.
-
-- Chat : The Patient View Screen offers a comprehensive view of the patient's healthcare journey. It includes their basic information and their Radiology Images if found, and their treatment plan.
+- Patient View : The Patient View Screen offers a comprehensive view of the patient's healthcare journey. It includes their basic information and their Radiology Images if found, and their treatment plan.
 
 - Common Injuries Regions : The Common Injuries Regions screen aids physiotherapists in diagnosing and treating common injuries. They can access a library of injuries categorized by region, view detailed anatomy, and explore specific injuries with descriptions, images, mechanisms, and diagnostic tests. Lastly, therapists can access tailored treatment programs, streamlining patient care with comprehensive resources.
 
