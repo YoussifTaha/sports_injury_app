@@ -20,11 +20,15 @@ class InjuryPhysicalExamination extends StatefulWidget {
 class _InjuryPhysicalExaminationState extends State<InjuryPhysicalExamination>
     with TickerProviderStateMixin {
   late List<dynamic>? goals;
+  late List<dynamic>? fileredGoals;
 
   @override
   void initState() {
     super.initState();
     goals = widget.physicalExaminationModel.goals;
+    fileredGoals = goals?.sublist(1);
+    print('goals: ${goals?.length}');
+    print('fileredGoals: ${fileredGoals?.length}');
   }
 
   @override
@@ -37,12 +41,22 @@ class _InjuryPhysicalExaminationState extends State<InjuryPhysicalExamination>
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.physicalExaminationModel.goals?.first ?? '',
-                    style: getBoldStyle(
-                        color: ColorManger.darkPrimary, fontSize: 18.sp),
-                  ),
-                  verticalSpace(10),
+                  widget.physicalExaminationModel.goals?.first == null ||
+                          widget.physicalExaminationModel.goals?.first == ''
+                      ? SizedBox.shrink()
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.physicalExaminationModel.goals?.first ??
+                                  '',
+                              style: getBoldStyle(
+                                  color: ColorManger.darkPrimary,
+                                  fontSize: 18.sp),
+                            ),
+                            verticalSpace(10),
+                          ],
+                        ),
                 ],
               ),
         widget.physicalExaminationModel.name == null ||
@@ -57,20 +71,25 @@ class _InjuryPhysicalExaminationState extends State<InjuryPhysicalExamination>
                   verticalSpace(5),
                 ],
               ),
-        Text(
-          widget.physicalExaminationModel.description ?? '',
-          style: getRegularStyle(
-              color: ColorManger.regularGrey, fontSize: 14.sp, textHeight: 1.2),
-        ),
+        widget.physicalExaminationModel.description == null ||
+                widget.physicalExaminationModel.description == ''
+            ? SizedBox.shrink()
+            : Text(
+                widget.physicalExaminationModel.description ?? '',
+                style: getRegularStyle(
+                    color: ColorManger.regularGrey,
+                    fontSize: 14.sp,
+                    textHeight: 1.2),
+              ),
         verticalSpace(5),
-        widget.physicalExaminationModel.goals == null
+        fileredGoals == null
             ? SizedBox.shrink()
             : ListView.separated(
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Text(
-                    goals?[index],
+                    fileredGoals?[index],
                     style: getRegularStyle(
                         color: ColorManger.regularGrey,
                         fontSize: 14.sp,
@@ -80,7 +99,7 @@ class _InjuryPhysicalExaminationState extends State<InjuryPhysicalExamination>
                 separatorBuilder: (context, index) {
                   return verticalSpace(5);
                 },
-                itemCount: goals?.length ?? 0,
+                itemCount: fileredGoals?.length ?? 0,
               ),
       ],
     );

@@ -10,38 +10,43 @@ class InjuriesPhysicalExaminationListBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<InjuryPhysicalExaminationCubit,
-        InjuryPhysicalExaminationState>(
-      builder: (context, state) {
-        if (state is InjuriesPhysicalExaminationLoadingState) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (state is InjuriesPhysicalExaminationSuccsses) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return InjuryPhysicalExamination(
-                      physicalExaminationModel:
-                          state.physicalExamination[index],
-                    );
-                  },
-                  separatorBuilder: (context, index) => verticalSpace(20),
-                  itemCount: state.physicalExamination.length),
-              verticalSpace(20),
-              myHorizontalDivider(),
-              verticalSpace(20),
-            ],
-          );
-        } else if (state is InjuriesPhysicalExaminationError) {
-          return Text(state.error);
-        } else
-          return SizedBox.shrink();
-      },
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: BlocBuilder<InjuryPhysicalExaminationCubit,
+            InjuryPhysicalExaminationState>(
+          builder: (context, state) {
+            if (state is InjuriesPhysicalExaminationLoadingState) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is InjuriesPhysicalExaminationSuccsses) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListView.separated(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return InjuryPhysicalExamination(
+                          physicalExaminationModel:
+                              state.physicalExamination[index],
+                        );
+                      },
+                      separatorBuilder: (context, index) => verticalSpace(20),
+                      itemCount: state.physicalExamination.length),
+                  verticalSpace(20),
+                  myHorizontalDivider(),
+                  verticalSpace(20),
+                ],
+              );
+            } else if (state is InjuriesPhysicalExaminationError) {
+              return Text(state.error);
+            } else
+              return SizedBox.shrink();
+          },
+        ),
+      ),
     );
   }
 }

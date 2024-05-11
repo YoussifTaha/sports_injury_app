@@ -24,7 +24,8 @@ class CommonInjuriesRegions extends StatelessWidget {
         InjuriesRegionRow(
             firstRegionName: 'Shoulder', secondRegionName: 'Knee'),
         verticalSpace(30),
-        InjuriesRegionRow(firstRegionName: 'Wrist', secondRegionName: 'Ankle'),
+        InjuriesRegionRow(
+            firstRegionName: 'Wrist And Hand', secondRegionName: 'Ankle'),
         verticalSpace(30),
         InjuriesRegionRow(firstRegionName: 'Elbow', secondRegionName: 'Pelvis'),
         verticalSpace(30),
