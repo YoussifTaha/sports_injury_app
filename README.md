@@ -1,4 +1,4 @@
-# Sports Injury
+# Sports Injuries
 
 <img src="icon.png" alt="Logo" width="100" align="center"/>
 
